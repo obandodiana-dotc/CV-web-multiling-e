@@ -3,155 +3,141 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diana Obando Marchena — 3D Interactive CV</title>
-  <meta name="description" content="3D interactive CV card with multilingual support and animated background." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
-
-  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-
-  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.2/core.css">
-  <script type="module" src="https://pyscript.net/releases/2024.6.2/core.js"></script>
+  <title>Diana Obando Marchena — Professional Dev CV</title>
+  <meta name="description" content="Diana Obando Marchena's static professional CV styled as a developer terminal interface." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 
   <style>
+    /* VARIABLES: Palette de desarrollador (Terminal/Tech) - 2D */
     :root{
-      --primary:#06b6d4; /* cyan */
-      --accent:#22c55e;  /* green */
-      --ink:#0b1220;     /* deep slate */
-      --muted:#6b7a90;
-      /* MEJORA: Variables para Modo Claro */
-      --glass: rgba(255,255,255,0.72);
-      --bg-color-1: #ffffff;
-      --bg-color-2: #f8fafc;
-      --border-color: rgba(2,6,23,.1);
-      --shadow-color: rgba(2,6,23,.18);
+      --primary: #00FFC0; /* Teal Neon */
+      --accent: #FF00FF;  /* Magenta Neon (para contrastes) */
+      --ink: #FFFFFF;     /* Texto principal (Blanco Brillante) */
+      --muted: #00B37F;   /* Texto secundario (Verde Oscuro) */
+      --bg-color-1: #0A0A0A; /* Fondo (Negro Profundo) */
+      --panel-bg: #1A1A1A; /* Fondo de la consola opaco, más claro que el fondo */
+      --border-color: #006645; /* Borde de consola */
+      --font-mono: "Fira Code", "Inconsolata", monospace;
     }
-    /* MEJORA: Definición de Modo Oscuro */
-    .dark-mode{
-      --ink:#f8fafc;
-      --muted:#94a3b8;
-      --glass: rgba(11,18,32,0.88); /* Más opaco y profesional */
-      --bg-color-1: #0b1220;
-      --bg-color-2: #1e293b;
-      --border-color: rgba(255,255,255,.1);
-      --shadow-color: rgba(0,0,0,.4);
-    }
+    
+    /* Estilo Base: Dark Mode, Monospace, sin 3D */
     *{ box-sizing:border-box; }
     html, body {
       height: 100%;
       margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: var(--font-mono); 
       color: var(--ink);
-      /* MEJORA: Uso de variables para el fondo, crucial para Dark Mode */
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(6,182,212,.10), transparent),
-                  radial-gradient(900px 500px at 100% 0%, rgba(34,197,94,.08), transparent),
-                  linear-gradient(180deg, var(--bg-color-1), var(--bg-color-2));
-      overflow: hidden;
+      background: var(--bg-color-1);
+      overflow-x: hidden; /* No 3D, solo scroll vertical si es necesario */
     }
-    /* Three.js canvas backdrop */
-    #bg { position: fixed; inset:0; z-index: 0; }
-    /* Top bar */
+    
+    /* Contenedor Principal (Reemplaza .stage y .card3d) */
+    .cv-container {
+      width: 100%;
+      min-height: 100vh;
+      display: grid; 
+      place-items: center;
+      padding: 100px 0 30px; /* Espacio para el topbar y el footer */
+    }
+
+    /* Panel: La "Consola" */
+    .panel{
+      width: min(900px, 94vw); 
+      background: var(--panel-bg);
+      border: 2px solid var(--primary); 
+      border-radius: 6px;
+      padding: 24px;
+      margin: 0 auto;
+      display: grid; 
+      grid-template-columns: 1.5fr 1fr; 
+      gap: 30px;
+    }
+    
+    /* Top bar: Barra de Sistema */
     .topbar{
-      position: fixed; z-index: 3; inset: 0 0 auto 0; padding: 12px 16px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10; 
+      padding: 12px 16px;
       display:flex; gap:12px; align-items:center; justify-content:space-between;
-      pointer-events: none;
+      background: rgba(10, 10, 10, 0.98); 
+      border-bottom: 1px solid var(--border-color);
     }
-    .lang, .cta{
-      pointer-events: auto;
-      background: var(--glass);
-      /* MEJORA: Glassmorphism más definido */
-      backdrop-filter: blur(18px) saturate(180%);
-      border:1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 8px 12px;
-      display:flex; gap:8px; align-items:center;
-      box-shadow: 0 8px 24px var(--shadow-color);
-    }
-    select{
-      border:none; background:transparent; font-weight:700; color:var(--ink);
-      outline:none;
-    }
+    .lang, .cta{ display:flex; gap:8px; align-items:center; }
+    select{ border:none; background:transparent; font-weight:700; color:var(--primary); outline:none; }
     .cta a{
       text-decoration:none; color:var(--ink); font-weight:700;
+      padding: 6px 10px; border: 1px solid var(--border-color);
+      border-radius: 4px; transition: all .2s;
     }
-    .cta a:hover{ color:var(--primary); }
-    /* 3D card container */
-    .stage{
-      position: relative;
-      width: 100%; height: 100%;
-      display: grid; place-items: center;
-      z-index: 2;
-      perspective: 1200px;
+    .cta a:hover{ color:var(--primary); border-color: var(--primary); }
+    
+    /* Contenido */
+    .left{ display:flex; flex-direction:column; gap:16px; }
+    .right{ display:flex; flex-direction:column; gap:16px; }
+    .title{ font-size: 1.8rem; font-weight:900; letter-spacing:-1px; color: var(--accent); }
+    .subtitle{ font-size:1.1rem; font-weight:600; color: var(--primary); margin-bottom: 4px; }
+    .muted{ color: var(--muted); font-size: 0.95rem; }
+    ul{ margin:.5rem 0; padding-left: 1rem; }
+    li{ margin-bottom: 8px; font-size: 0.95rem; }
+    
+    /* Tags */
+    .tag{
+      display:inline-block; padding:3px 8px; margin:4px 6px 0 0; border-radius:3px;
+      background: rgba(0, 255, 192, 0.1); 
+      color: var(--primary); font-weight:500; font-size:.85rem;
+      border: 1px solid rgba(0, 255, 192, 0.2);
     }
-    .card3d{
-      position: relative;
-      /* MEJORA: Aumento del tamaño para mejor UX en móviles */
-      width: min(860px, 94vw);
-      height: min(600px, 85vh);
-      transform-style: preserve-3d;
-      transform: rotateX(6deg) rotateY(-8deg);
-      transition: transform .2s ease-out;
-    }
-    .panel{
-      position:absolute; inset:0;
-      background: var(--glass);
-      /* MEJORA: Glassmorphism más definido */
-      backdrop-filter: blur(18px) saturate(180%);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 24px; /* Ligeramente más padding */
-      box-shadow: 0 14px 48px var(--shadow-color);
-      display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; /* Mayor separación */
-      transform: translateZ(40px);
-    }
-    .left{ display:flex; flex-direction:column; gap:12px; }
-    .right{ display:flex; flex-direction:column; gap:12px; }
-    .title{ font-size: 1.6rem; font-weight:900; letter-spacing:.2px }
-    .subtitle{ font-size:1.05rem; font-weight:800; color:var(--primary) }
-    .muted{ color: var(--muted); }
-    ul{ margin:.5rem 0; padding-left: 1.2rem; }
-    .chip, .tag{
-      display:inline-block; padding:6px 10px; margin:4px 6px 0 0; border-radius:999px;
-      background: rgba(6,182,212,.10); border:1px solid rgba(6,182,212,.25);
-      color: var(--ink); font-weight:700; font-size:.85rem;
-    }
-    .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+    
+    /* Botones de Contacto */
+    .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
     .btn{
       display:inline-flex; gap:8px; align-items:center; text-decoration:none;
-      padding:10px 12px; border-radius:12px; border:1px solid var(--border-color);
-      background:white; color:var(--ink); font-weight:700;
-      box-shadow: 0 4px 14px rgba(2,6,23,.08);
+      padding:8px 10px; border-radius:4px; border:1px solid var(--border-color);
+      background:var(--bg-color-1); color:var(--ink); font-weight:600;
+      transition: all .2s;
     }
-    .btn:hover{ color: var(--primary); }
-    .kpis{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:6px; }
+    .btn:hover{ color: var(--primary); border-color: var(--primary); }
+
+    /* KPIs: System Status/Metrics */
+    .kpis{ display:grid; grid-template-columns: repeat(3, 1fr); gap:15px; margin-top:10px; }
     .kpi{ 
-      padding:14px; border-radius:16px; border:1px solid var(--border-color); 
-      background: var(--bg-color-1); text-align:center; 
-      box-shadow: 0 2px 8px rgba(2,6,23,.05); 
+      padding:12px; border-radius:4px; border:1px solid var(--border-color); 
+      background: rgba(0, 255, 192, 0.05); 
+      text-align:center; 
     }
-    .kpi .v{ font-size:1.8rem; font-weight:900; line-height: 1.1; } 
-    .kpi .l{ color:var(--muted); margin-top:-2px; font-size: 0.9rem; } 
+    .kpi .v{ font-size:1.6rem; font-weight:700; line-height: 1.1; color: var(--primary); }
+    .kpi .l{ color:var(--muted); margin-top:2px; font-size: 0.8rem; text-transform: uppercase; }
+    
+    /* QR Box: Integrated System Block */
     .qr{
       display:flex; align-items:center; justify-content:center;
-      background: var(--bg-color-1); border-radius:16px; border:1px solid var(--border-color);
+      background: var(--bg-color-1); 
+      border-radius:4px; border:1px solid var(--border-color);
       height: 120px;
+      font-size: 0.9rem;
+      color: var(--accent); 
     }
-    /* Small footer */
+    .qr span:before { content: '[STATUS] '; color: var(--primary); }
+    
+    /* Footer */
     .footer{
-      position: fixed; z-index: 3; inset: auto 0 6px 0; text-align:center; color:var(--muted); font-size:.9rem;
-      background: linear-gradient(180deg, transparent, var(--bg-color-1)); 
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+      text-align:center; color:var(--muted); font-size:.8rem;
+      background: rgba(10, 10, 10, 0.98); 
       padding: 6px;
     }
+    
+    /* Responsive */
     @media (max-width: 860px){
-      .panel{ grid-template-columns: 1fr; height: 100%; overflow:auto; padding: 20px; gap: 20px; } 
+      .panel{ grid-template-columns: 1fr; padding: 20px; gap: 20px; } 
     }
   </style>
 </head>
 <body>
-  <canvas id="bg"></canvas>
 
   <div class="topbar">
     <div class="lang">
-      <span>🌍</span>
+      <button id="colorToggle" style="border:none; background:transparent; font-size:1.1rem; cursor:pointer; color: var(--accent);" title="Alternar Color">✨</button>
+      <span>// Language:</span>
       <select id="lang">
         <option value="de">Deutsch</option>
         <option value="en">English</option>
@@ -159,141 +145,134 @@
         <option value="fr">Français</option>
         <option value="it">Italiano</option>
       </select>
-      <button id="darkModeToggle" style="border:none; background:transparent; font-size:1.1rem; cursor:pointer;" title="Toggle Dark Mode">🌓</button>
     </div>
     <div class="cta">
       <a id="downloadCv" href="./cv_diana_de.pdf" download>⬇️ CV (PDF)</a> 
       <a id="openLinkedin" href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank">🔗 LinkedIn</a>
       <a id="openGithub" href="https://github.com/obandodiana-dotc" target="_blank">📂 GitHub</a>
-      <a id="emailBtn" href="mailto:obando.diana@web.de?subject=Kontakt%20via%203D%20CV">✉️ Email</a>
     </div>
   </div>
 
-  <div class="stage" id="stage">
-    <div class="card3d" id="card">
-      <div class="panel">
-        <div class="left">
-          <div class="title" id="name">Diana Obando Marchena</div>
-          <div class="subtitle" id="headline">Spezialistin für Zoll, Außenwirtschaft & Compliance</div>
-          <div class="muted" id="summary">Ergebnisorientierte Spezialistin im Zoll- und Außenwirtschaftsrecht...</div>
+  <div class="cv-container" id="cvContainer">
+    <div class="panel">
+      <div class="left">
+        <div class="title" id="name">// Diana Obando Marchena</div>
+        <div class="subtitle" id="headline">Spezialistin für Zoll, Außenwirtschaft & Compliance</div>
+        <div class="muted" id="summary">Ergebnisorientierte Spezialistin im Zoll- und Außenwirtschaftsrecht...</div>
 
-          <div class="kpis">
-            <div class="kpi"><div class="v" id="kpi1v">192</div><div class="l" id="kpi1l">Importvorgänge</div></div>
-            <div class="kpi"><div class="v" id="kpi2v">25%</div><div class="l" id="kpi2l">Prozesszeit ↓</div></div>
-            <div class="kpi"><div class="v" id="kpi3v">99.5%</div><div class="l" id="kpi3l">SLA/Compliance</div></div>
-          </div>
-
-          <div class="btns">
-            <a class="btn" href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank">🔗 LinkedIn</a>
-            <a class="btn" href="https://github.com/obandodiana-dotc" target="_blank">📂 GitHub</a>
-            <a class="btn" href="mailto:obando.diana@web.de?subject=Kontakt%20via%203D%20CV">✉️ Contact</a>
-          </div>
+        <div class="subtitle" id="metricsTitle">System Metrics</div>
+        <div class="kpis">
+          <div class="kpi"><div class="v" id="kpi1v">192</div><div class="l" id="kpi1l">Importvorgänge</div></div>
+          <div class="kpi"><div class="v" id="kpi2v">25%</div><div class="l" id="kpi2l">Prozesszeit ↓</div></div>
+          <div class="kpi"><div class="v" id="kpi3v">99.5%</div><div class="l" id="kpi3l">SLA/Compliance</div></div>
         </div>
 
-        <div class="right">
-          <div>
-            <div class="subtitle" id="skillsTitle">Skills</div>
-            <div id="skillsTags"></div>
-          </div>
+        <div class="subtitle" id="contactTitle">Direct Connect</div>
+        <div class="btns">
+          <a class="btn" href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank">connect:linkedin()</a>
+          <a class="btn" href="https://github.com/obandodiana-dotc" target="_blank">repo:github()</a>
+          <a class="btn" href="mailto:obando.diana@web.de?subject=Kontakt%20via%203D%20CV">contact:email()</a>
+        </div>
+      </div>
 
-          <div>
-            <div class="subtitle" id="expTitle">Experience</div>
-            <ul id="expList"></ul>
-          </div>
+      <div class="right">
+        <div>
+          <div class="subtitle" id="skillsTitle">// Skills [Code Tags]</div>
+          <div id="skillsTags"></div>
+        </div>
 
-          <div class="qr" id="qrBox">
-            <span id="qrText">📍 München · Chancenkarte | Scanne para contacto</span>
-          </div>
+        <div>
+          <div class="subtitle" id="expTitle">// Experience [Process Log]</div>
+          <ul id="expList"></ul>
+        </div>
+
+        <div class="qr" id="qrBox">
+          <span id="qrText">📍 München · Chancenkarte | Escanea para contacto</span>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="footer">© <span id="year"></span> Diana Obando Marchena · 3D Interactive CV</div>
-
-  <py-script>
-from pyscript import display, js
-
-cv = {
-  "name": "Diana Obando Marchena",
-  "contacts": {
-    "city": "München, Deutschland",
-    "email": "obando.diana@web.de",
-    "phone": "+49 160 767 7666"
-  },
-  # MEJORA: Nueva estructura para traducir títulos de secciones y botones
-  "i18n": { 
-      "de": {"skillsTitle": "Fähigkeiten", "expTitle": "Erfahrung", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 München · Chancenkarte | Scannen Sie für Kontakt"},
-      "en": {"skillsTitle": "Skills", "expTitle": "Experience", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Munich · Chancenkarte | Scan for contact"},
-      "es": {"skillsTitle": "Habilidades", "expTitle": "Experiencia", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Múnich · Chancenkarte | Escanea para contacto"},
-      "fr": {"skillsTitle": "Compétences", "expTitle": "Expérience", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Munich · Chancenkarte | Scanner pour contact"},
-      "it": {"skillsTitle": "Competenze", "expTitle": "Esperienza", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Monaco · Chancenkarte | Scansiona per contatto"}
-  },
-  "roles": {
-    "de": {
-      "headline": "Spezialistin für Zoll, Außenwirtschaft & Compliance",
-      "summary": "Ergebnisorientierte Spezialistin im Zoll- und Außenwirtschaftsrecht mit Erfolgen in Prozessoptimierung, Risikomanagement und rechtssicheren Abläufen (SAP, Oracle).",
-      "kpis": [ ["192","Importvorgänge (DHL Praktikum)"], ["25%","Prozesszeit ↓ (Bank)"], ["99.5%","SLA/Compliance"] ],
-      "skills": ["Zollabwicklung (Import/Export)","DUA","Zoll-Compliance","Risikomanagement","Audit","SAP","Oracle","WMS","SharePoint","Excel (Adv)"],
-      "exp": [
-        "Banco Popular — Geschäftsbetrieb: Workflows, Compliance, Reporting (2021–2025)",
-        "Expeditors — Key Account Ops: KPIs, Zollvorschriften, OTD (2021)",
-        "DHL — Lager & Bestände: Audits, WMS, Qualität (2020–2021)"
-      ]
-    },
-    "en": {
-      "headline": "Customs, Foreign Trade & Compliance Specialist",
-      "summary": "Results-driven specialist with a proven record in process optimization, risk management, and compliant workflows using ERP systems (SAP, Oracle).",
-      "kpis": [ ["192","Import operations"], ["25%","Cycle time ↓"], ["99.5%","SLA/Compliance"] ],
-      "skills": ["Customs (import/export)","DUA","Trade compliance","Risk mgmt","Audit","SAP","Oracle","WMS","SharePoint","Excel (Adv)"],
-      "exp": [
-        "Banco Popular — Business Operations: streamlined workflows and compliance, achieving 25% cycle time reduction (2021–2025)", 
-        "Expeditors — Key Account Ops: KPIs, regulations, OTD (2021)",
-        "DHL — Warehouse & Inventory: audits, WMS, quality (2020–2021)"
-      ]
-    },
-    "es": {
-      "headline": "Especialista en Aduanas, Comercio Exterior y Compliance",
-      "summary": "Especialista orientada a resultados con logros en optimización de procesos, gestión de riesgos y flujos conformes con ERP (SAP, Oracle).",
-      "kpis": [ ["192","Operaciones de importación"], ["25%","Tiempo de proceso ↓"], ["99.5%","SLA/Compliance"] ],
-      "skills": ["Aduanas (import/export)","DUA","Compliance de comercio exterior","Gestión de riesgos","Auditoría","SAP","Oracle","WMS","SharePoint","Excel (Avanzado)"],
-      "exp": [
-        "Banco Popular — Operaciones: optimización de flujos y compliance, logrando una reducción del 25% en el tiempo de ciclo (2021–2025)", 
-        "Expeditors — Key Account Ops: KPIs, normativa, OTD (2021)",
-        "DHL — Almacén e inventario: auditorías, WMS, calidad (2020–2021)"
-      ]
-    },
-    "fr": {
-      "headline": "Spécialiste Douanes, Commerce Extérieur & Conformité",
-      "summary": "Spécialiste axée sur les résultats, experte en optimisation des processus, gestion des risques et conformité (SAP, Oracle).",
-      "kpis": [ ["192","Opérations d'import"], ["25%","Temps de cycle ↓"], ["99.5%","SLA/Conformité"] ],
-      "skills": ["Douanes (import/export)","DUA","Conformité","Gestion des risques","Audit","SAP","Oracle","WMS","SharePoint","Excel (Avancé)"],
-      "exp": [
-        "Banco Popular — Opérations: optimisation des flux et conformité, entraînant une réduction de 25% du temps de cycle (2021–2025)",
-        "Expeditors — Comptes clés: KPIs, réglementation, OTD (2021)",
-        "DHL — Entrepôt & inventaire: audits, WMS, qualité (2020–2021)"
-      ]
-    },
-    "it": {
-      "headline": "Specialista in Dogane, Commercio Estero e Compliance",
-      "summary": "Specialista orientata ai risultati con esperienza in ottimizzazione dei processi, gestione dei rischi e flussi conformi (SAP, Oracle).",
-      "kpis": [ ["192","Operazioni d'importazione"], ["25%","Tempo di processo ↓"], ["99.5%","SLA/Compliance"] ],
-      "skills": ["Dogane (import/export)","DUA","Trade compliance","Gestione rischi","Audit","SAP","Oracle","WMS","SharePoint","Excel (Avanzato)"],
-      "exp": [
-        "Banco Popular — Operations: ottimizzazione dei flussi e compliance, con una riduzione del 25% del tempo di ciclo (2021–2025)",
-        "Expeditors — Key Account Ops: KPI, normative, OTD (2021)",
-        "DHL — Magazzino & inventario: audit, WMS, qualità (2020–2021)"
-      ]
-    }
-  }
-}
-
-# Expose to JS
-js.window.CV_DATA = cv
-  </py-script>
+  <div class="footer">
+    <span style="color:var(--accent);">status: </span>ONLINE | 
+    <span style="color:var(--muted);">processing: </span>Diana Obando Marchena CV v<span id="year"></span>
+  </div>
 
   <script>
-    // Basic language switch using CV_DATA from PyScript
+    // ====================================================================
+    // DATOS CV: Movidos a JavaScript Nativo para Traducción Confiable
+    // ====================================================================
+    const CV_DATA = {
+      "name": "Diana Obando Marchena",
+      "i18n": { 
+          "de": {"skillsTitle": "// Fähigkeiten [Code Tags]", "expTitle": "// Erfahrung [Prozessprotokoll]", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 München · Chancenkarte | Scannen Sie für Kontakt", "metricsTitle": "System Metriken", "contactTitle": "Direkt Verbindung"},
+          "en": {"skillsTitle": "// Skills [Code Tags]", "expTitle": "// Experience [Process Log]", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Munich · Chancenkarte | Scan for contact", "metricsTitle": "System Metrics", "contactTitle": "Direct Connect"},
+          "es": {"skillsTitle": "// Habilidades [Code Tags]", "expTitle": "// Experiencia [Registro de Procesos]", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Múnich · Chancenkarte | Escanea para contacto", "metricsTitle": "Métricas de Sistema", "contactTitle": "Conexión Directa"},
+          "fr": {"skillsTitle": "// Compétences [Code Tags]", "expTitle": "// Expérience [Journal de Processus]", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Munich · Chancenkarte | Scanner pour contact", "metricsTitle": "Métriques Système", "contactTitle": "Connexion Directe"},
+          "it": {"skillsTitle": "// Competenze [Code Tags]", "expTitle": "// Esperienza [Registro Processo]", "downloadCv": "⬇️ CV (PDF)", "qrText": "📍 Monaco · Chancenkarte | Scansiona per contatto", "metricsTitle": "Metriche di Sistema", "contactTitle": "Connessione Diretta"}
+      },
+      "roles": {
+        "de": {
+          "headline": "Spezialistin für Zoll, Außenwirtschaft & Compliance",
+          "summary": "Ergebnisorientierte Spezialistin im Zoll- und Außenwirtschaftsrecht mit Erfolgen in Prozessoptimierung, Risikomanagement und rechtssicheren Abläufen (SAP, Oracle).",
+          "kpis": [ ["192","Importvorgänge (DHL Praktikum)"], ["25%","Prozesszeit ↓ (Bank)"], ["99.5%","SLA/Compliance"] ],
+          "skills": ["Zollabwicklung (Import/Export)","DUA","Zoll-Compliance","Risikomanagement","Audit","SAP","Oracle","WMS","SharePoint","Excel (Adv)"],
+          "exp": [
+            "Banco Popular — Geschäftsbetrieb: Workflows, Compliance, Reporting (2021–2025)",
+            "Expeditors — Key Account Ops: KPIs, Zollvorschriften, OTD (2021)",
+            "DHL — Lager & Bestände: Audits, WMS, Qualität (2020–2021)"
+          ]
+        },
+        "en": {
+          "headline": "Customs, Foreign Trade & Compliance Specialist",
+          "summary": "Results-driven specialist with a proven record in process optimization, risk management, and compliant workflows using ERP systems (SAP, Oracle).",
+          "kpis": [ ["192","Import operations"], ["25%","Cycle time ↓"], ["99.5%","SLA/Compliance"] ],
+          "skills": ["Customs (import/export)","DUA","Trade compliance","Risk mgmt","Audit","SAP","Oracle","WMS","SharePoint","Excel (Adv)"],
+          "exp": [
+            "Banco Popular — Business Operations: streamlined workflows and compliance, achieving 25% cycle time reduction (2021–2025)", 
+            "Expeditors — Key Account Ops: KPIs, regulations, OTD (2021)",
+            "DHL — Warehouse & Inventory: audits, WMS, quality (2020–2021)"
+          ]
+        },
+        "es": {
+          "headline": "Especialista en Aduanas, Comercio Exterior y Compliance",
+          "summary": "Especialista orientada a resultados con logros en optimización de procesos, gestión de riesgos y flujos conformes con ERP (SAP, Oracle).",
+          "kpis": [ ["192","Operaciones de importación"], ["25%","Tiempo de proceso ↓"], ["99.5%","SLA/Compliance"] ],
+          "skills": ["Aduanas (import/export)","DUA","Compliance de comercio exterior","Gestión de riesgos","Auditoría","SAP","Oracle","WMS","SharePoint","Excel (Avanzado)"],
+          "exp": [
+            "Banco Popular — Operaciones: optimización de flujos y compliance, logrando una reducción del 25% en el tiempo de ciclo (2021–2025)", 
+            "Expeditors — Key Account Ops: KPIs, normativa, OTD (2021)",
+            "DHL — Almacén e inventario: auditorías, WMS, calidad (2020–2021)"
+          ]
+        },
+        "fr": {
+          "headline": "Spécialiste Douanes, Commerce Extérieur & Conformité",
+          "summary": "Spécialiste axée sur les résultats, experte en optimisation des processus, gestion des risques et conformité (SAP, Oracle).",
+          "kpis": [ ["192","Opérations d'import"], ["25%","Temps de cycle ↓"], ["99.5%","SLA/Conformité"] ],
+          "skills": ["Douanes (import/export)","DUA","Conformité","Gestion des risques","Audit","SAP","Oracle","WMS","SharePoint","Excel (Avancé)"],
+          "exp": [
+            "Banco Popular — Opérations: optimisation des flux et conformité, entraînant une réduction de 25% du temps de cycle (2021–2025)",
+            "Expeditors — Comptes clés: KPIs, réglementation, OTD (2021)",
+            "DHL — Entrepôt & inventaire: audits, WMS, qualité (2020–2021)"
+          ]
+        },
+        "it": {
+          "headline": "Specialista in Dogane, Commercio Estero e Compliance",
+          "summary": "Specialista orientata ai risultati con esperienza in ottimizzazione dei processi, gestione dei rischi e flussi conformi (SAP, Oracle).",
+          "kpis": [ ["192","Operazioni d'importazione"], ["25%","Tempo di processo ↓"], ["99.5%","SLA/Compliance"] ],
+          "skills": ["Dogane (import/export)","DUA","Trade compliance","Gestione rischi","Audit","SAP","Oracle","WMS","SharePoint","Excel (Avanzato)"],
+          "exp": [
+            "Banco Popular — Operations: ottimizzazione dei flussi e compliance, con una riduzione del 25% del tempo di ciclo (2021–2025)",
+            "Expeditors — Key Account Ops: KPI, normative, OTD (2021)",
+            "DHL — Magazzino & inventario: audit, WMS, qualità (2020–2021)"
+          ]
+        }
+      }
+    };
+    
+    // ====================================================================
+    // LÓGICA DE RENDERIZADO Y TRADUCCIÓN (Mejorada)
+    // ====================================================================
     const $ = (sel) => document.querySelector(sel);
     const skillsTags = $("#skillsTags");
     const expList = $("#expList");
@@ -301,26 +280,34 @@ js.window.CV_DATA = cv
     const nameEl = $("#name"), headlineEl=$("#headline"), summaryEl=$("#summary");
     const yearEl = $("#year");
     
-    // Elementos para la traducción de UI y Dark Mode
+    // Elementos para la traducción de UI y Alternancia de Color
     const skillsTitleEl = $("#skillsTitle");
     const expTitleEl = $("#expTitle");
     const downloadCvBtn = $("#downloadCv");
     const qrTextEl = $("#qrText");
-    const darkModeToggle = $("#darkModeToggle");
+    const colorToggle = $("#colorToggle");
+    const contactTitleEl = $("#contactTitle");
+    const metricsTitleEl = $("#metricsTitle");
 
     yearEl.textContent = new Date().getFullYear();
 
     function render(lang="es"){
-      // Si por alguna razón CV_DATA no está definido al llamar a render, salimos.
-      if (typeof CV_DATA === 'undefined') return;
-
       const role = CV_DATA.roles[lang] || CV_DATA.roles["en"];
       const i18n = CV_DATA.i18n[lang] || CV_DATA.i18n["en"];
       
-      nameEl.textContent = CV_DATA.name;
+      // Contenido principal
+      nameEl.textContent = "// " + CV_DATA.name; 
       headlineEl.textContent = role.headline;
       summaryEl.textContent = role.summary;
 
+      // Traducción de títulos y botones (ESTO AHORA FUNCIONA SIEMPRE)
+      skillsTitleEl.textContent = i18n.skillsTitle;
+      expTitleEl.textContent = i18n.expTitle;
+      downloadCvBtn.innerHTML = i18n.downloadCv;
+      qrTextEl.textContent = i18n.qrText;
+      metricsTitleEl.textContent = i18n.metricsTitle;
+      contactTitleEl.textContent = i18n.contactTitle;
+      
       // Traducción de KPIs
       $("#kpi1v").textContent = role.kpis[0][0];
       $("#kpi1l").textContent = role.kpis[0][1];
@@ -328,19 +315,13 @@ js.window.CV_DATA = cv
       $("#kpi2l").textContent = role.kpis[1][1];
       $("#kpi3v").textContent = role.kpis[2][0];
       $("#kpi3l").textContent = role.kpis[2][1];
-
-      // Traducción de títulos de secciones y botones
-      skillsTitleEl.textContent = i18n.skillsTitle;
-      expTitleEl.textContent = i18n.expTitle;
-      downloadCvBtn.innerHTML = i18n.downloadCv;
-      qrTextEl.textContent = i18n.qrText;
       
       // Skills
       skillsTags.innerHTML = "";
       role.skills.forEach(s => {
         const span = document.createElement("span");
         span.className = "tag";
-        span.textContent = s;
+        span.textContent = `<${s}>`; 
         skillsTags.appendChild(span);
       });
 
@@ -348,97 +329,67 @@ js.window.CV_DATA = cv
       expList.innerHTML = "";
       role.exp.forEach(e => {
         const li = document.createElement("li");
-        li.textContent = e;
+        li.textContent = `[SUCCESS] ${e}`; 
         expList.appendChild(li);
       });
     }
 
-    // ====================================================================
-    // 🚩 CORRECCIÓN CRÍTICA: La lógica principal debe esperar a PyScript
-    // ====================================================================
-    function setup() {
-        // Validación de seguridad por si PyScript no ha cargado.
-        if (typeof CV_DATA === 'undefined') {
-            // Reintentamos en 100ms si los datos no están listos.
-            setTimeout(setup, 100);
-            return;
-        }
-
-        // 1. Interactive 3D tilt
-        const card = $("#card");
-        const stage = $("#stage");
-        stage.addEventListener("mousemove", (e) => {
-          const r = stage.getBoundingClientRect();
-          const px = (e.clientX - r.left) / r.width - 0.5;
-          const py = (e.clientY - r.top) / r.height - 0.5;
-          const rx = py * -10;
-          const ry = px * 16;
-          card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-        });
-        stage.addEventListener("mouseleave", () => {
-          card.style.transform = `rotateX(6deg) rotateY(-8deg)`;
-        });
-
-        // 2. Language change
+    // Inicialización al cargar el DOM (más confiable que PyScript)
+    document.addEventListener("DOMContentLoaded", () => {
+        // Renderizado inicial con el idioma seleccionado (generalmente 'es')
+        render(langSelect.value);
+        
+        // Listener para cambio de idioma
         langSelect.addEventListener("change", (e) => {
           render(e.target.value);
         });
-        
-        // 3. Renderizado inicial (ahora garantizado que CV_DATA existe)
-        render(langSelect.value);
 
-        // 4. Dark Mode logic
-        darkModeToggle.addEventListener("click", () => {
-          document.body.classList.toggle("dark-mode");
-          const isDarkMode = document.body.classList.contains("dark-mode");
-          darkModeToggle.textContent = isDarkMode ? "☀️" : "🌓";
+        // Lógica de Alternancia de Color (Teal <-> Magenta)
+        colorToggle.addEventListener("click", () => {
+            const root = document.documentElement;
+            const currentPrimary = getComputedStyle(root).getPropertyValue('--primary').trim();
+            
+            // Colores por defecto (Neon Teal)
+            let newPrimary = '#00FFC0';
+            let newAccent = '#FF00FF';
+            let newBorder = '#006645';
+            let tagBg = 'rgba(0, 255, 192, 0.1)';
+            let kpiBg = 'rgba(0, 255, 192, 0.05)';
+            let toggleIcon = '✨';
+
+            if (currentPrimary === '#00FFC0') { 
+                // Cambiar a Neon Magenta
+                newPrimary = '#FF00FF';
+                newAccent = '#00FFC0';
+                newBorder = '#FF00FF';
+                tagBg = 'rgba(255, 0, 255, 0.1)';
+                kpiBg = 'rgba(255, 0, 255, 0.05)';
+                toggleIcon = '💻';
+            }
+            
+            // Aplicar variables CSS
+            root.style.setProperty('--primary', newPrimary);
+            root.style.setProperty('--accent', newAccent);
+            root.style.setProperty('--muted', newPrimary === '#00FFC0' ? '#00B37F' : '#B300B3');
+            root.style.setProperty('--border-color', newBorder);
+
+            // Ajustar colores de elementos específicos
+            document.querySelectorAll(".tag").forEach(el => {
+                el.style.backgroundColor = tagBg;
+                el.style.borderColor = newPrimary === '#00FFC0' ? 'rgba(0, 255, 192, 0.2)' : 'rgba(255, 0, 255, 0.2)';
+                el.style.color = newPrimary;
+            });
+            document.querySelectorAll(".kpi").forEach(el => {
+                el.style.backgroundColor = kpiBg;
+                el.style.borderColor = newBorder;
+                el.querySelector('.v').style.color = newPrimary;
+            });
+
+            // Ajustar ícono del toggle
+            colorToggle.style.color = newAccent;
+            colorToggle.textContent = toggleIcon;
         });
-    }
-
-    // Iniciar la configuración con un pequeño retraso (50ms) para asegurar que PyScript haya definido CV_DATA.
-    setTimeout(setup, 50);
-
-    // ====================================================================
-    // Lógica de Three.js (No depende de CV_DATA, puede permanecer fuera de setup)
-    // ====================================================================
-    const canvas = document.getElementById("bg");
-    const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 1000);
-    camera.position.z = 50;
-
-    const resize = () => {
-      renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-      renderer.setSize(innerWidth, innerHeight);
-      camera.aspect = innerWidth/innerHeight;
-      camera.updateProjectionMatrix();
-    };
-    window.addEventListener("resize", resize);
-    resize();
-
-    // Particles
-    const geom = new THREE.BufferGeometry();
-    const count = 1200;
-    const positions = new Float32Array(count * 3);
-    for (let i=0;i<count;i++){
-      positions[i*3+0] = (Math.random()-0.5)*200;
-      positions[i*3+1] = (Math.random()-0.5)*120;
-      positions[i*3+2] = (Math.random()-0.5)*160;
-    }
-    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const mat = new THREE.PointsMaterial({ color: 0x06b6d4, size: 1.2, transparent: true, opacity: 0.75 });
-    const pts = new THREE.Points(geom, mat);
-    scene.add(pts);
-
-    const clock = new THREE.Clock();
-    function animate(){
-      const t = clock.getElapsedTime();
-      pts.rotation.y = t * 0.06;
-      pts.rotation.x = Math.sin(t*0.2)*0.08;
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    }
-    animate();
+    });
   </script>
 </body>
 </html>
