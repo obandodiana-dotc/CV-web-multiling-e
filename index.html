@@ -1,24 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Diana Obando Marchena — Supply Chain & Operations Specialist</title>
-  <meta name="description" content="Experienced Supply Chain professional specializing in customs compliance, logistics optimization, and process excellence." />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #06B6D4;
       --primary-light: #22D3EE;
-      --primary-dark: #0891B2;
       --accent: #8B5CF6;
-      --accent-light: #A78BFA;
       --success: #10B981;
-      --warning: #F59E0B;
       --text-primary: #F9FAFB;
       --text-secondary: #D1D5DB;
       --text-muted: #9CA3AF;
@@ -27,52 +21,24 @@
       --bg-card: #1E293B;
       --border-primary: #334155;
       --border-accent: #475569;
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-      --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.3);
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-      --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
     }
-    
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font-sans);
+      font-family: 'Inter', sans-serif;
       color: var(--text-primary);
       background: var(--bg-primary);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
     }
-    
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+      inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(6,182,212,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(139,92,246,0.08) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
-    
     .container {
       position: relative;
       z-index: 1;
@@ -81,24 +47,21 @@
       padding: 100px 24px 60px;
       min-height: 100vh;
     }
-    
     .nav-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 100;
-      background: rgba(15, 23, 42, 0.8);
+      background: rgba(15,23,42,0.8);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-primary);
-      transition: var(--transition-smooth);
+      transition: 0.3s;
     }
-    
     .nav-header.scrolled {
-      background: rgba(15, 23, 42, 0.95);
-      box-shadow: var(--shadow-lg);
+      background: rgba(15,23,42,0.95);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
-    
     .nav-content {
       max-width: 1400px;
       margin: 0 auto;
@@ -108,16 +71,13 @@
       align-items: center;
       gap: 24px;
     }
-    
     .nav-brand {
       display: flex;
       align-items: center;
       gap: 12px;
       font-weight: 700;
       font-size: 1.1rem;
-      color: var(--text-primary);
     }
-    
     .nav-brand-icon {
       width: 32px;
       height: 32px;
@@ -126,20 +86,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
     }
-    
     .nav-actions {
       display: flex;
       gap: 12px;
       align-items: center;
       flex-wrap: wrap;
     }
-    
     .lang-selector {
       position: relative;
     }
-    
     .lang-selector select {
       appearance: none;
       background: var(--bg-card);
@@ -147,19 +103,15 @@
       border-radius: 8px;
       padding: 8px 32px 8px 12px;
       color: var(--text-primary);
-      font-family: var(--font-sans);
       font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
-      transition: var(--transition-fast);
-      outline: none;
+      transition: 0.15s;
     }
-    
     .lang-selector select:hover {
       border-color: var(--primary);
       background: var(--bg-secondary);
     }
-    
     .lang-selector::after {
       content: '▼';
       position: absolute;
@@ -170,7 +122,6 @@
       color: var(--text-muted);
       pointer-events: none;
     }
-    
     .btn {
       display: inline-flex;
       align-items: center;
@@ -180,74 +131,62 @@
       font-weight: 600;
       font-size: 0.9rem;
       text-decoration: none;
-      transition: var(--transition-fast);
+      transition: 0.15s;
       cursor: pointer;
       border: none;
-      font-family: var(--font-sans);
       white-space: nowrap;
     }
-    
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-light));
       color: var(--bg-primary);
-      box-shadow: var(--shadow-md);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
     }
-    
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-lg), var(--shadow-glow);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 0 20px rgba(6,182,212,0.3);
     }
-    
     .btn-secondary {
       background: var(--bg-card);
       color: var(--text-primary);
       border: 1px solid var(--border-primary);
     }
-    
     .btn-secondary:hover {
       border-color: var(--primary);
       background: var(--bg-secondary);
       transform: translateY(-2px);
     }
-    
     .hero {
       margin-bottom: 48px;
       animation: fadeInUp 0.6s ease-out;
     }
-    
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    
     .hero-header {
       display: flex;
       align-items: flex-start;
       gap: 32px;
       margin-bottom: 24px;
     }
-    
     .avatar {
       width: 120px;
       height: 120px;
       border-radius: 20px;
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
       flex-shrink: 0;
-      box-shadow: var(--shadow-xl), 0 0 40px rgba(6, 182, 212, 0.3);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 0 40px rgba(6,182,212,0.3);
       position: relative;
       overflow: hidden;
     }
-    
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
     .avatar::before {
       content: '';
       position: absolute;
@@ -255,33 +194,29 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
       animation: shimmer 3s infinite;
+      z-index: 2;
+      pointer-events: none;
     }
-    
     @keyframes shimmer {
       0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
       100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
-    
-    .hero-content {
-      flex: 1;
-    }
-    
+    .hero-content { flex: 1; }
     .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--success);
       margin-bottom: 16px;
     }
-    
     .status-badge::before {
       content: '';
       width: 8px;
@@ -290,12 +225,10 @@
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
-    
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.5; }
     }
-    
     .hero h1 {
       font-size: 3rem;
       font-weight: 900;
@@ -306,29 +239,24 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
     .hero h2 {
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--primary);
       margin-bottom: 16px;
-      letter-spacing: -0.02em;
     }
-    
     .hero-description {
       font-size: 1.05rem;
       color: var(--text-secondary);
       line-height: 1.7;
       max-width: 800px;
     }
-    
     .hero-actions {
       display: flex;
       gap: 12px;
       margin-top: 24px;
       flex-wrap: wrap;
     }
-    
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -336,17 +264,15 @@
       margin-bottom: 48px;
       animation: fadeInUp 0.6s ease-out 0.2s both;
     }
-    
     .stat-card {
       background: var(--bg-card);
       border: 1px solid var(--border-primary);
       border-radius: 16px;
       padding: 24px;
-      transition: var(--transition-smooth);
+      transition: 0.3s;
       position: relative;
       overflow: hidden;
     }
-    
     .stat-card::before {
       content: '';
       position: absolute;
@@ -356,28 +282,21 @@
       height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
       transform: scaleX(0);
-      transition: var(--transition-smooth);
+      transition: 0.3s;
     }
-    
     .stat-card:hover {
       border-color: var(--primary);
       transform: translateY(-4px);
-      box-shadow: var(--shadow-xl), 0 0 30px rgba(6, 182, 212, 0.2);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 0 30px rgba(6,182,212,0.2);
     }
-    
-    .stat-card:hover::before {
-      transform: scaleX(1);
-    }
-    
+    .stat-card:hover::before { transform: scaleX(1); }
     .stat-value {
       font-size: 2.5rem;
       font-weight: 800;
       color: var(--primary);
       line-height: 1;
       margin-bottom: 8px;
-      font-family: var(--font-mono);
     }
-    
     .stat-label {
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -385,39 +304,28 @@
       letter-spacing: 0.05em;
       font-weight: 600;
     }
-    
     .content-grid {
       display: grid;
       grid-template-columns: 1fr 400px;
       gap: 32px;
       animation: fadeInUp 0.6s ease-out 0.4s both;
     }
-    
-    .main-column {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    
-    .sidebar {
+    .main-column, .sidebar {
       display: flex;
       flex-direction: column;
       gap: 24px;
     }
-    
     .section-card {
       background: var(--bg-card);
       border: 1px solid var(--border-primary);
       border-radius: 16px;
       padding: 28px;
-      transition: var(--transition-smooth);
+      transition: 0.3s;
     }
-    
     .section-card:hover {
       border-color: var(--border-accent);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
     }
-    
     .section-header {
       display: flex;
       align-items: center;
@@ -426,7 +334,6 @@
       padding-bottom: 16px;
       border-bottom: 2px solid var(--border-primary);
     }
-    
     .section-icon {
       width: 40px;
       height: 40px;
@@ -437,27 +344,21 @@
       justify-content: center;
       font-size: 1.3rem;
     }
-    
     .section-title {
       font-size: 1.4rem;
       font-weight: 700;
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
     }
-    
     .experience-item {
       position: relative;
       padding-left: 32px;
       padding-bottom: 32px;
       border-left: 2px solid var(--border-primary);
-      transition: var(--transition-smooth);
+      transition: 0.3s;
     }
-    
     .experience-item:last-child {
       padding-bottom: 0;
       border-left-color: transparent;
     }
-    
     .experience-item::before {
       content: '';
       position: absolute;
@@ -468,18 +369,13 @@
       background: var(--primary);
       border-radius: 50%;
       box-shadow: 0 0 0 4px var(--bg-card), 0 0 0 6px var(--border-primary);
-      transition: var(--transition-smooth);
+      transition: 0.3s;
     }
-    
-    .experience-item:hover {
-      border-left-color: var(--primary);
-    }
-    
+    .experience-item:hover { border-left-color: var(--primary); }
     .experience-item:hover::before {
       background: var(--accent);
-      box-shadow: 0 0 0 4px var(--bg-card), 0 0 0 6px var(--primary), 0 0 20px rgba(6, 182, 212, 0.4);
+      box-shadow: 0 0 0 4px var(--bg-card), 0 0 0 6px var(--primary), 0 0 20px rgba(6,182,212,0.4);
     }
-    
     .exp-header {
       display: flex;
       justify-content: space-between;
@@ -487,45 +383,32 @@
       gap: 16px;
       margin-bottom: 12px;
     }
-    
     .exp-company {
       font-size: 1.15rem;
       font-weight: 700;
-      color: var(--text-primary);
       margin-bottom: 4px;
     }
-    
     .exp-role {
       font-size: 1rem;
       font-weight: 600;
       color: var(--primary);
     }
-    
     .exp-date {
       font-size: 0.85rem;
       color: var(--text-muted);
       font-weight: 500;
       white-space: nowrap;
       padding: 4px 12px;
-      background: rgba(6, 182, 212, 0.1);
+      background: rgba(6,182,212,0.1);
       border-radius: 6px;
-      font-family: var(--font-mono);
     }
-    
     .exp-description {
       font-size: 0.95rem;
       color: var(--text-secondary);
       line-height: 1.7;
     }
-    
-    .skills-category {
-      margin-bottom: 24px;
-    }
-    
-    .skills-category:last-child {
-      margin-bottom: 0;
-    }
-    
+    .skills-category { margin-bottom: 24px; }
+    .skills-category:last-child { margin-bottom: 0; }
     .skills-category-title {
       font-size: 0.95rem;
       font-weight: 600;
@@ -534,53 +417,44 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-    
     .skills-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
     }
-    
     .skill-tag {
       padding: 6px 14px;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid rgba(6, 182, 212, 0.2);
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.2);
       border-radius: 8px;
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--primary);
-      transition: var(--transition-fast);
-      cursor: default;
+      transition: 0.15s;
     }
-    
     .skill-tag:hover {
-      background: rgba(6, 182, 212, 0.2);
+      background: rgba(6,182,212,0.2);
       border-color: var(--primary);
       transform: translateY(-2px);
     }
-    
     .contact-card {
-      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(139, 92, 246, 0.1));
+      background: linear-gradient(135deg, rgba(6,182,212,0.1), rgba(139,92,246,0.1));
       border: 1px solid var(--border-primary);
       border-radius: 16px;
       padding: 24px;
       position: sticky;
       top: 100px;
     }
-    
     .contact-title {
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--text-primary);
       margin-bottom: 16px;
     }
-    
     .contact-links {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    
     .contact-link {
       display: flex;
       align-items: center;
@@ -592,49 +466,32 @@
       text-decoration: none;
       color: var(--text-primary);
       font-weight: 500;
-      transition: var(--transition-fast);
+      transition: 0.15s;
     }
-    
     .contact-link:hover {
       border-color: var(--primary);
       background: var(--bg-secondary);
       transform: translateX(4px);
     }
-    
-    .contact-icon {
-      font-size: 1.2rem;
-    }
-    
     .location-badge {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 16px;
-      background: rgba(139, 92, 246, 0.1);
-      border: 1px solid rgba(139, 92, 246, 0.3);
+      background: rgba(139,92,246,0.1);
+      border: 1px solid rgba(139,92,246,0.3);
       border-radius: 12px;
       margin-top: 16px;
     }
-    
-    .location-icon {
-      font-size: 1.5rem;
-    }
-    
-    .location-text {
-      flex: 1;
-    }
-    
     .location-city {
       font-weight: 600;
       color: var(--accent);
       font-size: 1rem;
     }
-    
     .location-status {
       font-size: 0.85rem;
       color: var(--text-muted);
     }
-    
     .footer {
       margin-top: 60px;
       padding-top: 32px;
@@ -643,7 +500,6 @@
       color: var(--text-muted);
       font-size: 0.9rem;
     }
-    
     .theme-toggle {
       width: 40px;
       height: 40px;
@@ -654,91 +510,35 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: var(--transition-fast);
+      transition: 0.15s;
       font-size: 1.2rem;
     }
-    
     .theme-toggle:hover {
       border-color: var(--primary);
       background: var(--bg-secondary);
       transform: rotate(15deg);
     }
-    
     @media (max-width: 1024px) {
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .sidebar {
-        order: -1;
-      }
-      
-      .contact-card {
-        position: static;
-      }
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+      .contact-card { position: static; }
     }
-    
     @media (max-width: 768px) {
-      .container {
-        padding: 80px 16px 40px;
-      }
-      
-      .nav-content {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-      }
-      
-      .nav-actions {
-        justify-content: center;
-      }
-      
-      .hero-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      
-      .avatar {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      .hero h2 {
-        font-size: 1.2rem;
-      }
-      
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .section-card {
-        padding: 20px;
-      }
+      .container { padding: 80px 16px 40px; }
+      .nav-content { flex-direction: column; align-items: stretch; gap: 16px; }
+      .nav-actions { justify-content: center; }
+      .hero-header { flex-direction: column; align-items: center; text-align: center; }
+      .avatar { width: 100px; height: 100px; }
+      .hero h1 { font-size: 2rem; }
+      .hero h2 { font-size: 1.2rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-card { padding: 20px; }
     }
-    
     @media (max-width: 480px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .exp-header {
-        flex-direction: column;
-      }
-      
-      .hero-actions {
-        flex-direction: column;
-        width: 100%;
-      }
-      
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
+      .stats-grid { grid-template-columns: 1fr; }
+      .exp-header { flex-direction: column; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -758,10 +558,8 @@
             <option value="es" selected>🇪🇸 Español</option>
           </select>
         </div>
-        <button class="theme-toggle" id="themeToggle" title="Toggle theme">🎨</button>
-        <a href="#" class="btn btn-primary" id="downloadBtn">
-          📥 Descargar CV
-        </a>
+        <button class="theme-toggle" id="themeToggle">🎨</button>
+        <a href="#" class="btn btn-primary" id="downloadBtn">📥 Descargar CV</a>
       </div>
     </div>
   </nav>
@@ -769,9 +567,16 @@
   <div class="container">
     <section class="hero">
       <div class="hero-header">
-        <div class="avatar">💼</div>
+        <!-- 
+          INSTRUCCIONES PARA TU FOTO:
+          Opción 1: Guarda tu foto como "diana-photo.jpg" en la misma carpeta que este archivo HTML
+          Opción 2: Sube tu foto a imgur.com y reemplaza "diana-photo.jpg" con el enlace directo
+        -->
+        <div class="avatar">
+          <img src="diana-photo.jpg" alt="Diana Obando Marchena" onerror="this.style.display='none'; this.parentElement.innerHTML='💼'">
+        </div>
         <div class="hero-content">
-          <div class="status-badge" id="statusBadge">
+          <div class="status-badge">
             <span id="statusText">Disponible para oportunidades</span>
           </div>
           <h1 id="heroName">Diana Obando Marchena</h1>
@@ -780,15 +585,9 @@
             Coordinadora de Supply Chain experimentada con experiencia comprobada en cumplimiento aduanero, operaciones de importación/exportación y logística end-to-end. Especializada en optimización de procesos y garantía de 0% de errores en flujos críticos.
           </p>
           <div class="hero-actions">
-            <a href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank" class="btn btn-primary">
-              🔗 LinkedIn
-            </a>
-            <a href="mailto:obando.diana@web.de" class="btn btn-secondary">
-              ✉️ Email
-            </a>
-            <a href="https://github.com/obandodiana-dotc" target="_blank" class="btn btn-secondary">
-              📂 GitHub
-            </a>
+            <a href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank" class="btn btn-primary">🔗 LinkedIn</a>
+            <a href="mailto:obando.diana@web.de" class="btn btn-secondary">✉️ Email</a>
+            <a href="https://github.com/obandodiana-dotc" target="_blank" class="btn btn-secondary">📂 GitHub</a>
           </div>
         </div>
       </div>
@@ -796,19 +595,19 @@
 
     <section class="stats-grid">
       <div class="stat-card">
-        <div class="stat-value" id="stat1Value">192</div>
+        <div class="stat-value">192</div>
         <div class="stat-label" id="stat1Label">Operaciones de Importación</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" id="stat2Value">25%</div>
+        <div class="stat-value">25%</div>
         <div class="stat-label" id="stat2Label">Reducción de Tiempo</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" id="stat3Value">0%</div>
+        <div class="stat-value">0%</div>
         <div class="stat-label" id="stat3Label">Tasa de Error</div>
       </div>
       <div class="stat-card">
-        <div class="stat-value" id="stat4Value">98%</div>
+        <div class="stat-value">98%</div>
         <div class="stat-label" id="stat4Label">Entrega a Tiempo</div>
       </div>
     </section>
@@ -837,21 +636,21 @@
           <h3 class="contact-title" id="contactTitle">Contacto</h3>
           <div class="contact-links">
             <a href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank" class="contact-link">
-              <span class="contact-icon">🔗</span>
+              <span>🔗</span>
               <span>LinkedIn</span>
             </a>
             <a href="https://github.com/obandodiana-dotc" target="_blank" class="contact-link">
-              <span class="contact-icon">📂</span>
+              <span>📂</span>
               <span>GitHub</span>
             </a>
             <a href="mailto:obando.diana@web.de" class="contact-link">
-              <span class="contact-icon">✉️</span>
+              <span>✉️</span>
               <span>obando.diana@web.de</span>
             </a>
           </div>
           <div class="location-badge">
-            <span class="location-icon">📍</span>
-            <div class="location-text">
+            <span>📍</span>
+            <div>
               <div class="location-city" id="locationCity">Múnich, Alemania</div>
               <div class="location-status" id="locationStatus">Chancenkarte • Disponible inmediatamente</div>
             </div>
@@ -861,7 +660,7 @@
     </div>
 
     <footer class="footer">
-      <p>© <span id="footerYear">2024</span> Diana Obando Marchena • Built with passion for excellence</p>
+      <p>© 2025 Diana Obando Marchena • Built with passion for excellence</p>
     </footer>
   </div>
 
@@ -873,7 +672,7 @@
           statusText: "Verfügbar für neue Möglichkeiten",
           heroName: "Diana Obando Marchena",
           heroTitle: "Supply Chain & Business Operations Spezialistin",
-          heroDescription: "Erfahrene Supply Chain Koordinatorin mit nachgewiesener Expertise in Zoll-Compliance, Import-/Export-Abwicklung und End-to-End-Logistik. Spezialisiert auf Prozessoptimierung und Sicherstellung von 0%-Fehlerquoten bei kritischen Abläufen.",
+          heroDescription: "Erfahrene Supply Chain Koordinatorin mit nachgewiesener Expertise in Zoll-Compliance, Import-/Export-Abwicklung und End-to-End-Logistik.",
           downloadBtn: "📥 CV Herunterladen",
           stat1Label: "Import-Operationen",
           stat2Label: "Zeitreduktion",
@@ -881,52 +680,20 @@
           stat4Label: "Pünktliche Lieferung",
           expSectionTitle: "Berufserfahrung",
           skillsSectionTitle: "Kernkompetenzen",
-          contactTitle: "Kontakt aufnehmen",
+          contactTitle: "Kontakt",
           locationCity: "München, Deutschland",
           locationStatus: "Chancenkarte • Sofort verfügbar",
           experience: [
-            {
-              company: "Banco Popular",
-              role: "Business Operations Spezialistin",
-              date: "Okt 2021 - Jul 2025",
-              description: "Implementierung qualitätsorientierter Betreuungsstrategien mit 10% CSAT-Steigerung. Analyse und Neugestaltung des Dokumentations-Workflows – 25% Zeitreduktion. Sicherstellung der Compliance mit 0%-Fehlerquote bei kritischen Prozessen."
-            },
-            {
-              company: "Expeditors International",
-              role: "Key Account Operations Spezialistin (Export)",
-              date: "Jun 2021 - Okt 2021",
-              description: "Operative Abwicklung von 40+ Purchase Orders wöchentlich für 5 internationale Key Accounts im Medizinprodukte-Sektor. End-to-End-Koordination von Exportprozessen mit >98% Liefertreue. Erstellung von Frachtdokumenten für ca. 70 Sendungen pro Monat."
-            },
-            {
-              company: "DHL Global Forwarding",
-              role: "Assistentin Lager und Bestandskontrolle",
-              date: "Apr 2020 - Apr 2021",
-              description: "Durchführung monatlicher Inventuren für Audits. Qualitätssicherung von 300+ Warenbewegungen/Tag unter ISO 9001. Warenannahme von 1.500+ SKUs mittels WMS. Reduzierung der Inventurdifferenzen um 10% durch Prozessoptimierung."
-            },
-            {
-              company: "DHL Global Forwarding",
-              role: "Praktikantin Importlogistik und Zollabwicklung",
-              date: "Okt 2019 - Nov 2019",
-              description: "End-to-End-Abwicklung von 192 Importvorgängen für 36 B2B-Kunden. Datenverarbeitung im Zollsystem Merlin und Vorbereitung von Zollanmeldungen DUA. Koordination mit Zollbehörden und Spediteuren."
-            }
+            { company: "Banco Popular", role: "Business Operations Spezialistin", date: "Okt 2021 - Jul 2025", description: "Implementierung qualitätsorientierter Betreuungsstrategien mit 10% CSAT-Steigerung. Analyse und Neugestaltung des Dokumentations-Workflows – 25% Zeitreduktion." },
+            { company: "Expeditors International", role: "Key Account Operations Spezialistin (Export)", date: "Jun 2021 - Okt 2021", description: "Operative Abwicklung von 40+ Purchase Orders wöchentlich für 5 internationale Key Accounts im Medizinprodukte-Sektor." },
+            { company: "DHL Global Forwarding", role: "Assistentin Lager und Bestandskontrolle", date: "Apr 2020 - Apr 2021", description: "Durchführung monatlicher Inventuren für Audits. Qualitätssicherung von 300+ Warenbewegungen/Tag unter ISO 9001." },
+            { company: "DHL Global Forwarding", role: "Praktikantin Importlogistik und Zollabwicklung", date: "Okt 2019 - Nov 2019", description: "End-to-End-Abwicklung von 192 Importvorgängen für 36 B2B-Kunden." }
           ],
           skills: [
-            {
-              category: "Supply Chain & Logistik",
-              items: ["Bestandsmanagement", "PO-Abwicklung", "Lagerkoordination", "Incoterms", "Audit-Vorbereitung", "Lieferketten-Optimierung"]
-            },
-            {
-              category: "Zoll & Außenhandel",
-              items: ["Zoll-Compliance", "DUA-Anmeldungen", "Import/Export-Dokumentation", "Merlin-System", "Wareneingang/-ausgang"]
-            },
-            {
-              category: "ERP & IT-Systeme",
-              items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"]
-            },
-            {
-              category: "Digitalisierung & Analyse",
-              items: ["Python", "HTML/CSS", "Datenanalyse", "KI-Grundlagen"]
-            }
+            { category: "Supply Chain & Logistik", items: ["Bestandsmanagement", "PO-Abwicklung", "Lagerkoordination", "Incoterms", "Audit-Vorbereitung"] },
+            { category: "Zoll & Außenhandel", items: ["Zoll-Compliance", "DUA-Anmeldungen", "Import/Export-Dokumentation", "Merlin-System"] },
+            { category: "ERP & IT-Systeme", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
+            { category: "Digitalisierung", items: ["Python", "HTML/CSS", "Datenanalyse", "KI-Grundlagen"] }
           ]
         },
         en: {
@@ -934,7 +701,7 @@
           statusText: "Available for opportunities",
           heroName: "Diana Obando Marchena",
           heroTitle: "Supply Chain & Business Operations Specialist",
-          heroDescription: "Experienced Supply Chain Coordinator with proven expertise in customs compliance, import/export operations, and end-to-end logistics. Specialized in process optimization and ensuring 0% error rates in critical workflows.",
+          heroDescription: "Experienced Supply Chain Coordinator with proven expertise in customs compliance, import/export operations, and end-to-end logistics.",
           downloadBtn: "📥 Download CV",
           stat1Label: "Import Operations",
           stat2Label: "Time Reduction",
@@ -946,48 +713,16 @@
           locationCity: "Munich, Germany",
           locationStatus: "Chancenkarte • Available immediately",
           experience: [
-            {
-              company: "Banco Popular",
-              role: "Business Operations Specialist",
-              date: "Oct 2021 - Jul 2025",
-              description: "Implemented quality-focused service strategies resulting in 10% CSAT increase. Analyzed and redesigned documentation workflow – 25% time reduction. Ensured compliance with 0% error rate in critical processes."
-            },
-            {
-              company: "Expeditors International",
-              role: "Key Account Operations Specialist (Export)",
-              date: "Jun 2021 - Oct 2021",
-              description: "Managed 40+ Purchase Orders weekly for 5 international key accounts in medical products sector. End-to-end coordination of export processes with >98% on-time delivery. Created freight documents for ~70 shipments monthly."
-            },
-            {
-              company: "DHL Global Forwarding",
-              role: "Warehouse & Inventory Control Assistant",
-              date: "Apr 2020 - Apr 2021",
-              description: "Conducted monthly inventories for audits. Quality assurance of 300+ goods movements/day under ISO 9001. Managed 1,500+ SKUs via WMS. Reduced inventory discrepancies by 10% through process optimization."
-            },
-            {
-              company: "DHL Global Forwarding",
-              role: "Import Logistics & Customs Clearance Intern",
-              date: "Oct 2019 - Nov 2019",
-              description: "End-to-end processing of 192 import operations for 36 B2B clients. Data processing in Merlin customs system and DUA declarations preparation. Coordination with customs authorities and freight forwarders."
-            }
+            { company: "Banco Popular", role: "Business Operations Specialist", date: "Oct 2021 - Jul 2025", description: "Implemented quality-focused service strategies resulting in 10% CSAT increase. Analyzed and redesigned documentation workflow – 25% time reduction." },
+            { company: "Expeditors International", role: "Key Account Operations Specialist (Export)", date: "Jun 2021 - Oct 2021", description: "Managed 40+ Purchase Orders weekly for 5 international key accounts in medical products sector." },
+            { company: "DHL Global Forwarding", role: "Warehouse & Inventory Control Assistant", date: "Apr 2020 - Apr 2021", description: "Conducted monthly inventories for audits. Quality assurance of 300+ goods movements/day under ISO 9001." },
+            { company: "DHL Global Forwarding", role: "Import Logistics & Customs Clearance Intern", date: "Oct 2019 - Nov 2019", description: "End-to-end processing of 192 import operations for 36 B2B clients." }
           ],
           skills: [
-            {
-              category: "Supply Chain & Logistics",
-              items: ["Inventory Management", "PO Processing", "Warehouse Coordination", "Incoterms", "Audit Preparation", "Supply Chain Optimization"]
-            },
-            {
-              category: "Customs & Foreign Trade",
-              items: ["Customs Compliance", "DUA Declarations", "Import/Export Documentation", "Merlin System", "Goods Receipt/Dispatch"]
-            },
-            {
-              category: "ERP & IT Systems",
-              items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"]
-            },
-            {
-              category: "Digitalization & Analysis",
-              items: ["Python", "HTML/CSS", "Data Analysis", "AI Fundamentals"]
-            }
+            { category: "Supply Chain & Logistics", items: ["Inventory Management", "PO Processing", "Warehouse Coordination", "Incoterms", "Audit Preparation"] },
+            { category: "Customs & Foreign Trade", items: ["Customs Compliance", "DUA Declarations", "Import/Export Documentation", "Merlin System"] },
+            { category: "ERP & IT Systems", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
+            { category: "Digitalization", items: ["Python", "HTML/CSS", "Data Analysis", "AI Fundamentals"] }
           ]
         },
         es: {
@@ -995,7 +730,7 @@
           statusText: "Disponible para oportunidades",
           heroName: "Diana Obando Marchena",
           heroTitle: "Especialista en Supply Chain y Operaciones",
-          heroDescription: "Coordinadora de Supply Chain experimentada con experiencia comprobada en cumplimiento aduanero, operaciones de importación/exportación y logística end-to-end. Especializada en optimización de procesos y garantía de 0% de errores en flujos críticos.",
+          heroDescription: "Coordinadora de Supply Chain experimentada con experiencia comprobada en cumplimiento aduanero, operaciones de importación/exportación y logística end-to-end.",
           downloadBtn: "📥 Descargar CV",
           stat1Label: "Operaciones de Importación",
           stat2Label: "Reducción de Tiempo",
@@ -1007,85 +742,42 @@
           locationCity: "Múnich, Alemania",
           locationStatus: "Chancenkarte • Disponible inmediatamente",
           experience: [
-            {
-              company: "Banco Popular",
-              role: "Especialista en Operaciones de Negocio",
-              date: "Oct 2021 - Jul 2025",
-              description: "Implementación de estrategias de atención orientadas a la calidad, logrando un aumento del 10% en CSAT. Análisis y rediseño del flujo de documentación – reducción del 25% en tiempos. Garantía de cumplimiento con 0% de errores en procesos críticos."
-            },
-            {
-              company: "Expeditors International",
-              role: "Especialista de Operaciones Key Account (Exportación)",
-              date: "Jun 2021 - Oct 2021",
-              description: "Gestión de 40+ órdenes de compra semanales para 5 cuentas clave internacionales en sector de productos médicos. Coordinación end-to-end de procesos de exportación con >98% de entrega puntual. Creación de documentos de carga para ~70 envíos mensuales."
-            },
-            {
-              company: "DHL Global Forwarding",
-              role: "Asistente de Almacén y Control de Inventario",
-              date: "Abr 2020 - Abr 2021",
-              description: "Realización de inventarios mensuales para auditorías. Aseguramiento de calidad de 300+ movimientos de mercancías/día bajo ISO 9001. Gestión de 1,500+ SKUs mediante WMS. Reducción del 10% en diferencias de inventario mediante optimización de procesos."
-            },
-            {
-              company: "DHL Global Forwarding",
-              role: "Practicante de Logística de Importación y Aduanas",
-              date: "Oct 2019 - Nov 2019",
-              description: "Procesamiento end-to-end de 192 operaciones de importación para 36 clientes B2B. Procesamiento de datos en sistema aduanero Merlin y preparación de declaraciones DUA. Coordinación con autoridades aduaneras y agentes de carga."
-            }
+            { company: "Banco Popular", role: "Especialista en Operaciones de Negocio", date: "Oct 2021 - Jul 2025", description: "Implementación de estrategias de atención orientadas a la calidad, logrando un aumento del 10% en CSAT. Análisis y rediseño del flujo de documentación." },
+            { company: "Expeditors International", role: "Especialista de Operaciones Key Account (Exportación)", date: "Jun 2021 - Oct 2021", description: "Gestión de 40+ órdenes de compra semanales para 5 cuentas clave internacionales en sector de productos médicos." },
+            { company: "DHL Global Forwarding", role: "Asistente de Almacén y Control de Inventario", date: "Abr 2020 - Abr 2021", description: "Realización de inventarios mensuales para auditorías. Aseguramiento de calidad de 300+ movimientos de mercancías/día bajo ISO 9001." },
+            { company: "DHL Global Forwarding", role: "Practicante de Logística de Importación y Aduanas", date: "Oct 2019 - Nov 2019", description: "Procesamiento end-to-end de 192 operaciones de importación para 36 clientes B2B." }
           ],
           skills: [
-            {
-              category: "Supply Chain y Logística",
-              items: ["Gestión de Inventario", "Procesamiento de PO", "Coordinación de Almacén", "Incoterms", "Preparación de Auditorías", "Optimización de Cadena de Suministro"]
-            },
-            {
-              category: "Aduanas y Comercio Exterior",
-              items: ["Cumplimiento Aduanero", "Declaraciones DUA", "Documentación Import/Export", "Sistema Merlin", "Recepción/Despacho de Mercancías"]
-            },
-            {
-              category: "ERP y Sistemas IT",
-              items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"]
-            },
-            {
-              category: "Digitalización y Análisis",
-              items: ["Python", "HTML/CSS", "Análisis de Datos", "Fundamentos de IA"]
-            }
+            { category: "Supply Chain y Logística", items: ["Gestión de Inventario", "Procesamiento de PO", "Coordinación de Almacén", "Incoterms", "Preparación de Auditorías"] },
+            { category: "Aduanas y Comercio Exterior", items: ["Cumplimiento Aduanero", "Declaraciones DUA", "Documentación Import/Export", "Sistema Merlin"] },
+            { category: "ERP y Sistemas IT", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
+            { category: "Digitalización", items: ["Python", "HTML/CSS", "Análisis de Datos", "Fundamentos de IA"] }
           ]
         }
       }
     };
 
-    // Language switching functionality
     const langSelect = document.getElementById('langSelect');
     
     function updateContent(lang) {
       const content = DATA.i18n[lang];
       
-      // Update navigation
       document.getElementById('navName').textContent = content.navName;
       document.getElementById('downloadBtn').innerHTML = content.downloadBtn;
-      
-      // Update hero section
       document.getElementById('statusText').textContent = content.statusText;
       document.getElementById('heroName').textContent = content.heroName;
       document.getElementById('heroTitle').textContent = content.heroTitle;
       document.getElementById('heroDescription').textContent = content.heroDescription;
-      
-      // Update stats
       document.getElementById('stat1Label').textContent = content.stat1Label;
       document.getElementById('stat2Label').textContent = content.stat2Label;
       document.getElementById('stat3Label').textContent = content.stat3Label;
       document.getElementById('stat4Label').textContent = content.stat4Label;
-      
-      // Update section titles
       document.getElementById('expSectionTitle').textContent = content.expSectionTitle;
       document.getElementById('skillsSectionTitle').textContent = content.skillsSectionTitle;
       document.getElementById('contactTitle').textContent = content.contactTitle;
-      
-      // Update location
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
       
-      // Update experience
       const experienceList = document.getElementById('experienceList');
       experienceList.innerHTML = content.experience.map(exp => `
         <div class="experience-item">
@@ -1100,7 +792,6 @@
         </div>
       `).join('');
       
-      // Update skills
       const skillsContainer = document.getElementById('skillsContainer');
       skillsContainer.innerHTML = content.skills.map(category => `
         <div class="skills-category">
@@ -1116,13 +807,8 @@
       updateContent(e.target.value);
     });
     
-    // Initialize with Spanish
     updateContent('es');
     
-    // Footer year
-    document.getElementById('footerYear').textContent = new Date().getFullYear();
-    
-    // Navbar scroll effect
     const navHeader = document.getElementById('navHeader');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -1132,11 +818,9 @@
       }
     });
     
-    // Theme toggle placeholder
     document.getElementById('themeToggle').addEventListener('click', () => {
       alert('Theme toggle feature coming soon!');
     });
   </script>
-
 </body>
 </html>
