@@ -1,65 +1,60 @@
-# Diana Obando Marchena - CV Web Interactivo (Supply Chain & Operations)
+# Diana Obando Marchena - Interactive Web CV (Supply Chain & Operations)
 
-**Un portafolio web de alto rendimiento y multi-idioma desarrollado con tecnologías *frontend* puras para presentar la experiencia profesional de Diana Obando Marchena en el sector de Supply Chain y Operaciones.**
+**A high-performance, multi-language front-end portfolio built with pure web technologies to showcase the professional experience of Diana Obando Marchena in Supply Chain and Operations.**
 
-[![Tecnologías](https://img.shields.io/badge/Tech-HTML%2FCSS%2FJS-blue.svg)](https://developer.mozilla.org/es/docs/Web/JavaScript)
-[![Estilo](https://img.shields.io/badge/Design-Custom_CSS-red.svg)](https://developer.mozilla.org/es/docs/Web/CSS)
-[![Multi-Idioma](https://img.shields.io/badge/Features-i18n-green.svg)](#características-clave)
-[![Perfil](https://img.shields.io/badge/Focus-Supply_Chain-orange.svg)](#resumen-del-perfil-profesional)
+[![Technologies](https://img.shields.io/badge/Tech-HTML%2FCSS%2FJS-blue.svg)](https://developer.mozilla.org/en/docs/Web/JavaScript)
+[![Style](https://img.shields.io/badge/Design-Custom_CSS-red.svg)](https://developer.mozilla.org/en/docs/Web/CSS)
+[![Multi-Language](https://img.shields.io/badge/Features-i18n-green.svg)](#key-technical-features)
+[![Profile](https://img.shields.io/badge/Focus-Supply_Chain-orange.svg)](#professional-profile-summary)
 
-## ✨ Descripción General
+## ✨ Project Overview
 
-Este proyecto sirve como la representación digital y dinámica del currículum vitae de Diana Obando Marchena. El objetivo es ofrecer una experiencia de usuario fluida y visualmente atractiva, manteniendo la máxima portabilidad y rendimiento.
+This project functions as a dynamic and visually appealing digital curriculum vitae (CV) for Diana Obando Marchena. It is designed to provide a smooth, modern user experience while prioritizing portability and performance.
 
-La aplicación demuestra la capacidad de construir un sitio web moderno, rápido y *responsive* utilizando exclusivamente **HTML5, Vanilla JavaScript y Custom CSS**.
+The application serves as a strong portfolio piece, demonstrating the capability to build a fast, modern, and fully **responsive** website using only **HTML5, Vanilla JavaScript, and custom-written CSS**.
 
-## 🚀 Habilidades Técnicas Demostradas
+## 🚀 Key Technical Features
 
-El código fuente subyacente de esta página de CV destaca las siguientes habilidades de desarrollo *frontend*:
+The underlying code structure of this CV page showcases the following front-end development skills:
 
-* **Desarrollo Sin Frameworks (*Vanilla JS*):** Todo el manejo del DOM, la inyección de contenido, y la lógica de internacionalización (i18n) se implementan con JavaScript puro, sin depender de librerías como React, Vue o jQuery.
-* **Diseño *Mobile-First* y *Responsive*:** Uso avanzado de `@media queries` en CSS para asegurar que el diseño y la estructura (*grid*) se adapten perfectamente a todos los dispositivos, desde móviles pequeños hasta monitores grandes.
-* **Estilo y Animaciones Avanzadas:** Implementación de diseño Dark Mode moderno, efectos de fondo (gradientes radiales), animaciones de *shimmer* en el avatar, y efectos de *scroll* en la barra de navegación (sticky header con cambio de estilo).
-* **Internacionalización (i18n):** Implementación de un sistema de contenido dinámico basado en un objeto `DATA` JavaScript. Esto permite al usuario cambiar el idioma de toda la página (ES, EN, DE) sin recargar.
-* **CSS Limpio y Variables:** Uso de variables CSS (`:root`) para definir colores y facilitar la futura implementación de un *theme toggle* (modo claro/oscuro).
+* **Framework-Less Development (Vanilla JS):** All DOM manipulation, content injection, and internationalization (i18n) logic are implemented using pure JavaScript, without reliance on libraries like React, Vue, or jQuery.
+* **Internationalization (i18n):** Implemented a dynamic content switching system based on a JavaScript `DATA` object, allowing the user to change the entire page content (ES, EN, DE) instantly without a page reload.
+* **Advanced CSS Styling:** Features a modern Dark Mode design, subtle background effects (radial gradients), avatar shimmer animations, and a sticky navigation header that changes style on scroll.
+* **Mobile-First & Responsive Design:** Utilizes extensive custom `@media queries` and flexible layouts (Flexbox/Grid) to ensure the design adapts seamlessly across all devices.
+* **Code Quality:** Use of CSS variables (`:root`) to define colors and a clear structure for easy maintenance and potential future theme toggling (Light/Dark mode).
 
-## 💼 Resumen del Perfil Profesional
+## 💼 Professional Profile Summary
 
-La estructura del CV está optimizada para la experiencia de una **Especialista en Supply Chain y Operaciones** con enfoque en:
+The CV structure is optimized for a **Supply Chain & Operations Specialist** with expertise in:
 
-* **Logística End-to-End:** Experiencia comprobada en operaciones de Importación/Exportación, gestión de órdenes de compra (PO) y coordinación de almacenes.
-* **Compliance Aduanero:** Conocimiento y manejo de documentación aduanera (DUA) y cumplimiento normativo.
-* **Optimización y Calidad:** Métricas enfocadas a resultados (0% Tasa de Error, 25% Reducción de Tiempo, 98% Entrega a Tiempo) e implementación de estándares de calidad (ISO 9001).
-* **Tecnología ERP/IT:** Manejo de sistemas clave de la industria como **SAP WM, Oracle, WMS**, y una base en **Python** para la digitalización.
+* **End-to-End Logistics:** Proven experience in Import/Export operations, Purchase Order (PO) processing, and warehouse coordination.
+* **Customs Compliance:** Deep knowledge and handling of customs declarations (DUA) and regulatory compliance.
+* **Process Optimization:** Demonstrated focus on results, highlighted by key metrics like **0% Error Rate**, **25% Time Reduction** in workflows, and **98% On-Time Delivery**.
+* **ERP/IT Systems:** Proficiency in industry-standard systems including **SAP WM, Oracle, WMS**, and a foundation in **Python** for digitalization.
+* **Location:** Currently based in **Munich, Germany**, available immediately.
 
-## ⚙️ Estructura del Contenido
+## ⚙️ Content Structure Highlights
 
-| Sección | Contenido | Características Destacadas |
+| Section | Key Content | Visual / Functional Features |
 | :--- | :--- | :--- |
-| **Hero & Título** | Nombre, Título profesional, Descripción y estado de disponibilidad. | Título con degradado de color y *status badge* con animación de pulso. |
-| **Métricas Clave** | 4 tarjetas con KPIs de rendimiento (e.g., Operaciones de Importación: **192**). | Tarjetas interactivas con efecto *hover* y barra de progreso. |
-| **Experiencia** | Timeline de experiencia profesional (DHL, Expeditors, Banco Popular). | Diseño de *timeline* vertical limpio con indicadores visuales. |
-| **Competencias** | Habilidades organizadas por categorías (Logística, Aduanas, ERP, Digitalización). | Tags estilizados y categorizados. |
-| **Contacto** | Enlaces directos (LinkedIn, Email, GitHub) y localización actual. | Tarjeta de contacto "pegajosa" (*sticky* en escritorio) con ubicación en **Múnich, Alemania**. |
+| **Hero Section** | Name, Professional Title, Description, and Availability Status. | Title gradient effect and a **live status badge** with a pulse animation. |
+| **Key Metrics** | 4 cards displaying key performance indicators (KPIs) (e.g., Import Operations: **192**). | Interactive cards with hover effects and top indicator bars. |
+| **Experience** | Professional timeline (DHL, Expeditors, Banco Popular). | Clean vertical timeline design with visual markers. |
+| **Skills** | Competencies categorized (Logistics, Customs, ERP, Digitalization). | Categorized, styled tags for quick readability. |
+| **Contact** | Direct links (LinkedIn, Email, GitHub) and current location. | Sticky contact card (on desktop) highlighting the **Munich, Germany** location.
 
-## 🛠️ Instalación y Despliegue
+## 🚀 Installation and Deployment
 
-Al ser un proyecto estático (*frontend* puro), su despliegue es trivial:
+As a pure static front-end project, deployment is straightforward:
 
-1.  **Descargar:** Obtenga el archivo `index.html` (y la carpeta CSS si existiera) o clone el repositorio.
-2.  **Abrir:** Haga doble clic en `index.html`.
-3.  **Despliegue:** Puede subirse a cualquier servicio de hosting estático (GitHub Pages, Netlify, Vercel) sin ninguna configuración adicional.
+1.  **Download:** Clone the repository or download the `index.html` file.
+2.  **Run Locally:** Simply double-click `index.html`.
+3.  **Deployment:** Can be hosted on any static hosting service (GitHub Pages, Netlify, Vercel) without any server-side configuration.
 
-## ✍️ Contribuciones (i18n)
+## 🤝 Contributions (i18n)
 
-Se agradecen contribuciones centradas en:
+Contributions are welcome, particularly those focused on:
 
-* Añadir idiomas adicionales al objeto `DATA.i18n`.
-* Mejorar la **accesibilidad (A11Y)** y el contraste de colores.
-* Completar la funcionalidad del botón `themeToggle` (cambio de modo claro/oscuro).
-
----
-
-## 📜 Licencia
-
-[Pendiente de definir Licencia, típicamente MIT]
+* Adding additional languages to the `DATA.i18n` object.
+* Improving **Accessibility (A11Y)** and color contrast.
+* Completing the functionality of the `themeToggle` button (Light/Dark mode switching).
