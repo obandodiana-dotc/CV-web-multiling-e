@@ -518,6 +518,65 @@
       background: var(--bg-secondary);
       transform: rotate(15deg);
     }
+
+    .value-props {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .value-prop {
+      background: linear-gradient(135deg, rgba(6,182,212,0.12), rgba(139,92,246,0.12));
+      border: 1px solid rgba(148,163,184,0.25);
+      padding: 14px 16px;
+      border-radius: 12px;
+    }
+    .value-prop strong { display:block; font-size: 0.95rem; margin-bottom: 4px; }
+    .value-prop span { color: var(--text-secondary); font-size: 0.88rem; }
+    .impact-card {
+      background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(30,41,59,0.85));
+      border: 1px solid var(--border-primary);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+    .impact-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+    .impact-row { margin-bottom: 14px; }
+    .impact-row:last-child { margin-bottom: 0; }
+    .impact-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .impact-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.2);
+      overflow: hidden;
+    }
+    .impact-fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    .theme-light {
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #E2E8F0;
+      --bg-card: #FFFFFF;
+      --border-primary: #CBD5E1;
+      --border-accent: #94A3B8;
+    }
+
     @media (max-width: 1024px) {
       .content-grid { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
@@ -589,6 +648,7 @@
             <a href="mailto:obando.diana@web.de" class="btn btn-secondary">✉️ Email</a>
             <a href="https://github.com/obandodiana-dotc" target="_blank" class="btn btn-secondary">📂 GitHub</a>
           </div>
+          <div class="value-props" id="valueProps"></div>
         </div>
       </div>
     </section>
@@ -624,6 +684,10 @@
       </div>
 
       <div class="sidebar">
+        <div class="impact-card">
+          <h3 id="impactTitle">Impacto que ve reclutamiento</h3>
+          <div id="impactMetrics"></div>
+        </div>
         <div class="section-card">
           <div class="section-header">
             <div class="section-icon">⚡</div>
@@ -683,6 +747,17 @@
           contactTitle: "Kontakt",
           locationCity: "München, Deutschland",
           locationStatus: "Chancenkarte • Sofort verfügbar",
+          impactTitle: "Recruiter-relevanter Impact",
+          valueProps: [
+            { title: "Operative Präzision", text: "0% Fehlerquote in kritischen Dokumentationsflüssen." },
+            { title: "Globale Abstimmung", text: "Zusammenarbeit mit internationalen Accounts und Stakeholdern." },
+            { title: "Prozessoptimierung", text: "Messbare Zeitersparnis und stabile Servicequalität." }
+          ],
+          impactMetrics: [
+            { label: "Lieferzuverlässigkeit", value: "98%", score: 98 },
+            { label: "Dokumentationsqualität", value: "100%", score: 100 },
+            { label: "Cycle-Time Optimierung", value: "25%", score: 75 }
+          ],
           experience: [
             { company: "Banco Popular", role: "Business Operations Spezialistin", date: "Okt 2021 - Jul 2025", description: "Implementierung qualitätsorientierter Betreuungsstrategien mit 10% CSAT-Steigerung. Analyse und Neugestaltung des Dokumentations-Workflows – 25% Zeitreduktion." },
             { company: "Expeditors International", role: "Key Account Operations Spezialistin (Export)", date: "Jun 2021 - Okt 2021", description: "Operative Abwicklung von 40+ Purchase Orders wöchentlich für 5 internationale Key Accounts im Medizinprodukte-Sektor." },
@@ -712,6 +787,17 @@
           contactTitle: "Get in Touch",
           locationCity: "Munich, Germany",
           locationStatus: "Chancenkarte • Available immediately",
+          impactTitle: "Recruiter-Focused Impact",
+          valueProps: [
+            { title: "Operational Precision", text: "0% error rate in critical documentation workflows." },
+            { title: "Global Coordination", text: "Experience collaborating with international accounts and stakeholders." },
+            { title: "Process Excellence", text: "Proven time reduction while maintaining service quality." }
+          ],
+          impactMetrics: [
+            { label: "On-Time Reliability", value: "98%", score: 98 },
+            { label: "Documentation Accuracy", value: "100%", score: 100 },
+            { label: "Cycle-Time Optimization", value: "25%", score: 75 }
+          ],
           experience: [
             { company: "Banco Popular", role: "Business Operations Specialist", date: "Oct 2021 - Jul 2025", description: "Implemented quality-focused service strategies resulting in 10% CSAT increase. Analyzed and redesigned documentation workflow – 25% time reduction." },
             { company: "Expeditors International", role: "Key Account Operations Specialist (Export)", date: "Jun 2021 - Oct 2021", description: "Managed 40+ Purchase Orders weekly for 5 international key accounts in medical products sector." },
@@ -741,6 +827,17 @@
           contactTitle: "Contacto",
           locationCity: "Múnich, Alemania",
           locationStatus: "Chancenkarte • Disponible inmediatamente",
+          impactTitle: "Impacto que ve reclutamiento",
+          valueProps: [
+            { title: "Precisión Operativa", text: "0% de errores en flujos críticos de documentación." },
+            { title: "Coordinación Global", text: "Experiencia con cuentas internacionales y múltiples stakeholders." },
+            { title: "Excelencia de Procesos", text: "Reducción de tiempos con calidad de servicio consistente." }
+          ],
+          impactMetrics: [
+            { label: "Confiabilidad en entregas", value: "98%", score: 98 },
+            { label: "Exactitud documental", value: "100%", score: 100 },
+            { label: "Optimización ciclo-tiempo", value: "25%", score: 75 }
+          ],
           experience: [
             { company: "Banco Popular", role: "Especialista en Operaciones de Negocio", date: "Oct 2021 - Jul 2025", description: "Implementación de estrategias de atención orientadas a la calidad, logrando un aumento del 10% en CSAT. Análisis y rediseño del flujo de documentación." },
             { company: "Expeditors International", role: "Especialista de Operaciones Key Account (Exportación)", date: "Jun 2021 - Oct 2021", description: "Gestión de 40+ órdenes de compra semanales para 5 cuentas clave internacionales en sector de productos médicos." },
@@ -777,6 +874,7 @@
       document.getElementById('contactTitle').textContent = content.contactTitle;
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
+      document.getElementById('impactTitle').textContent = content.impactTitle;
       
       const experienceList = document.getElementById('experienceList');
       experienceList.innerHTML = content.experience.map(exp => `
@@ -792,6 +890,22 @@
         </div>
       `).join('');
       
+      const valueProps = document.getElementById('valueProps');
+      valueProps.innerHTML = content.valueProps.map(item => `
+        <div class="value-prop">
+          <strong>${item.title}</strong>
+          <span>${item.text}</span>
+        </div>
+      `).join('');
+
+      const impactMetrics = document.getElementById('impactMetrics');
+      impactMetrics.innerHTML = content.impactMetrics.map(metric => `
+        <div class="impact-row">
+          <div class="impact-meta"><span>${metric.label}</span><strong>${metric.value}</strong></div>
+          <div class="impact-bar"><span class="impact-fill" style="width:${metric.score}%"></span></div>
+        </div>
+      `).join('');
+
       const skillsContainer = document.getElementById('skillsContainer');
       skillsContainer.innerHTML = content.skills.map(category => `
         <div class="skills-category">
@@ -819,7 +933,7 @@
     });
     
     document.getElementById('themeToggle').addEventListener('click', () => {
-      alert('Theme toggle feature coming soon!');
+      document.body.classList.toggle('theme-light');
     });
   </script>
 </body>
