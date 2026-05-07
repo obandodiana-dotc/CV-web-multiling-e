@@ -518,6 +518,33 @@
       background: var(--bg-secondary);
       transform: rotate(15deg);
     }
+    
+    .quick-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+    .highlight-pill {
+      background: rgba(15,23,42,0.6);
+      border: 1px solid var(--border-primary);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .highlight-pill strong { color: var(--primary-light); display:block; margin-bottom: 4px; }
+    .project-item { padding: 16px; border: 1px solid var(--border-primary); border-radius: 12px; margin-bottom: 12px; background: rgba(6,182,212,0.05);}    
+    .project-item:last-child { margin-bottom: 0; }
+    .project-title { font-weight: 700; margin-bottom: 6px; }
+    .project-metric { color: var(--success); font-weight: 600; font-size: 0.9rem; }
+    .cert-list { display: grid; gap: 10px; }
+    .cert-item { padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border-primary); background: var(--bg-secondary); color: var(--text-secondary); }
+    .lang-levels { display: grid; gap: 10px; }
+    .lang-row { display: flex; justify-content: space-between; font-size: 0.92rem; padding: 8px 0; border-bottom: 1px dashed var(--border-primary); }
+    .lang-row:last-child { border-bottom: none; }
+    .lang-row span:last-child { color: var(--primary-light); font-weight: 600; }
+
     @media (max-width: 1024px) {
       .content-grid { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
@@ -539,6 +566,16 @@
       .exp-header { flex-direction: column; }
       .hero-actions { flex-direction: column; width: 100%; }
       .btn { width: 100%; justify-content: center; }
+    }
+      body.light-mode {
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --border-primary: #cbd5e1;
+      --border-accent: #94a3b8;
     }
   </style>
 </head>
@@ -589,6 +626,7 @@
             <a href="mailto:obando.diana@web.de" class="btn btn-secondary">✉️ Email</a>
             <a href="https://github.com/obandodiana-dotc" target="_blank" class="btn btn-secondary">📂 GitHub</a>
           </div>
+          <div class="quick-highlights" id="quickHighlights"></div>
         </div>
       </div>
     </section>
@@ -621,6 +659,13 @@
           </div>
           <div id="experienceList"></div>
         </div>
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon">🚀</div>
+            <h3 class="section-title" id="projectSectionTitle">Proyectos de Impacto</h3>
+          </div>
+          <div id="projectList"></div>
+        </div>
       </div>
 
       <div class="sidebar">
@@ -630,6 +675,20 @@
             <h3 class="section-title" id="skillsSectionTitle">Competencias Clave</h3>
           </div>
           <div id="skillsContainer"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon">🎓</div>
+            <h3 class="section-title" id="certSectionTitle">Certificaciones</h3>
+          </div>
+          <div class="cert-list" id="certList"></div>
+        </div>
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon">🌍</div>
+            <h3 class="section-title" id="langSectionTitle">Idiomas</h3>
+          </div>
+          <div class="lang-levels" id="langList"></div>
         </div>
 
         <div class="contact-card">
@@ -681,6 +740,9 @@
           expSectionTitle: "Berufserfahrung",
           skillsSectionTitle: "Kernkompetenzen",
           contactTitle: "Kontakt",
+          projectSectionTitle: "Impact-Projekte",
+          certSectionTitle: "Zertifizierungen",
+          langSectionTitle: "Sprachen",
           locationCity: "München, Deutschland",
           locationStatus: "Chancenkarte • Sofort verfügbar",
           experience: [
@@ -694,7 +756,18 @@
             { category: "Zoll & Außenhandel", items: ["Zoll-Compliance", "DUA-Anmeldungen", "Import/Export-Dokumentation", "Merlin-System"] },
             { category: "ERP & IT-Systeme", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
             { category: "Digitalisierung", items: ["Python", "HTML/CSS", "Datenanalyse", "KI-Grundlagen"] }
-          ]
+          ],
+          highlights: [
+            { title: "Compliance de élite", text: "0% error en documentación crítica de importación." },
+            { title: "Mejora continua", text: "25% reducción del ciclo documental con estandarización." },
+            { title: "Visión internacional", text: "Operación con cuentas globales en logística y aduanas." }
+          ],
+          projects: [
+            { title: "Optimización de workflow documental", description: "Mapeo de procesos y rediseño operativo en back-office.", metric: "-25% tiempo de respuesta" },
+            { title: "Modelo de atención orientado a calidad", description: "KPIs de servicio con seguimiento semanal para operaciones críticas.", metric: "+10% satisfacción (CSAT)" }
+          ],
+          certifications: ["Lean Six Sigma (en curso)", "Fundamentos de PM (Rocket Girl Academy)", "Data & Analytics Essentials"],
+          languages: [{name:"Español", level:"Nativo"},{name:"Inglés", level:"C1"},{name:"Alemán", level:"A2"},{name:"Portugués", level:"A2"}]
         },
         en: {
           navName: "Diana Obando",
@@ -710,6 +783,9 @@
           expSectionTitle: "Professional Experience",
           skillsSectionTitle: "Core Competencies",
           contactTitle: "Get in Touch",
+          projectSectionTitle: "Impact Projects",
+          certSectionTitle: "Certifications",
+          langSectionTitle: "Languages",
           locationCity: "Munich, Germany",
           locationStatus: "Chancenkarte • Available immediately",
           experience: [
@@ -723,7 +799,18 @@
             { category: "Customs & Foreign Trade", items: ["Customs Compliance", "DUA Declarations", "Import/Export Documentation", "Merlin System"] },
             { category: "ERP & IT Systems", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
             { category: "Digitalization", items: ["Python", "HTML/CSS", "Data Analysis", "AI Fundamentals"] }
-          ]
+          ],
+          highlights: [
+            { title: "Operational precision", text: "0% error in critical import documentation." },
+            { title: "Continuous improvement", text: "25% document cycle reduction via process redesign." },
+            { title: "Global mindset", text: "Cross-functional coordination with international accounts." }
+          ],
+          projects: [
+            { title: "Documentation workflow optimization", description: "Mapped pain points and redesigned process control points.", metric: "-25% response time" },
+            { title: "Quality-focused service model", description: "Built KPI tracking routines for high-risk operational cases.", metric: "+10% CSAT" }
+          ],
+          certifications: ["Lean Six Sigma (in progress)", "PM Fundamentals", "Data & Analytics Essentials"],
+          languages: [{name:"Spanish", level:"Native"},{name:"English", level:"C1"},{name:"German", level:"A2"},{name:"Portuguese", level:"A2"}]
         },
         es: {
           navName: "Diana Obando",
@@ -739,6 +826,9 @@
           expSectionTitle: "Experiencia Profesional",
           skillsSectionTitle: "Competencias Clave",
           contactTitle: "Contacto",
+          projectSectionTitle: "Proyectos de Impacto",
+          certSectionTitle: "Certificaciones",
+          langSectionTitle: "Idiomas",
           locationCity: "Múnich, Alemania",
           locationStatus: "Chancenkarte • Disponible inmediatamente",
           experience: [
@@ -752,7 +842,18 @@
             { category: "Aduanas y Comercio Exterior", items: ["Cumplimiento Aduanero", "Declaraciones DUA", "Documentación Import/Export", "Sistema Merlin"] },
             { category: "ERP y Sistemas IT", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
             { category: "Digitalización", items: ["Python", "HTML/CSS", "Análisis de Datos", "Fundamentos de IA"] }
-          ]
+          ],
+          highlights: [
+            { title: "Precisión operativa", text: "0% de error en documentación crítica de importación." },
+            { title: "Mejora continua", text: "25% de reducción del ciclo documental con rediseño de procesos." },
+            { title: "Visión global", text: "Coordinación transversal con cuentas internacionales." }
+          ],
+          projects: [
+            { title: "Optimización del flujo documental", description: "Identificación de cuellos de botella y rediseño de controles.", metric: "-25% tiempo de respuesta" },
+            { title: "Modelo de servicio orientado a calidad", description: "Estandarización de seguimiento KPI para casos críticos.", metric: "+10% CSAT" }
+          ],
+          certifications: ["Lean Six Sigma (en curso)", "Fundamentos de Gestión de Proyectos", "Data & Analytics Essentials"],
+          languages: [{name:"Español", level:"Nativo"},{name:"Inglés", level:"C1"},{name:"Alemán", level:"A2"},{name:"Portugués", level:"A2"}]
         }
       }
     };
@@ -775,6 +876,9 @@
       document.getElementById('expSectionTitle').textContent = content.expSectionTitle;
       document.getElementById('skillsSectionTitle').textContent = content.skillsSectionTitle;
       document.getElementById('contactTitle').textContent = content.contactTitle;
+      document.getElementById('projectSectionTitle').textContent = content.projectSectionTitle;
+      document.getElementById('certSectionTitle').textContent = content.certSectionTitle;
+      document.getElementById('langSectionTitle').textContent = content.langSectionTitle;
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
       
@@ -801,6 +905,21 @@
           </div>
         </div>
       `).join('');
+
+      document.getElementById('quickHighlights').innerHTML = content.highlights.map(item => `
+        <div class="highlight-pill"><strong>${item.title}</strong>${item.text}</div>
+      `).join('');
+
+      document.getElementById('projectList').innerHTML = content.projects.map(project => `
+        <article class="project-item">
+          <div class="project-title">${project.title}</div>
+          <p class="exp-description">${project.description}</p>
+          <div class="project-metric">${project.metric}</div>
+        </article>
+      `).join('');
+
+      document.getElementById('certList').innerHTML = content.certifications.map(cert => `<div class="cert-item">${cert}</div>`).join('');
+      document.getElementById('langList').innerHTML = content.languages.map(l => `<div class="lang-row"><span>${l.name}</span><span>${l.level}</span></div>`).join('');
     }
     
     langSelect.addEventListener('change', (e) => {
@@ -818,8 +937,11 @@
       }
     });
     
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      alert('Theme toggle feature coming soon!');
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const light = document.body.classList.contains('light-mode');
+      themeToggle.textContent = light ? '🌙' : '🎨';
     });
   </script>
 </body>
