@@ -22,6 +22,20 @@
       --border-primary: #334155;
       --border-accent: #475569;
     }
+    body.light-mode {
+      --primary: #0891B2;
+      --primary-light: #06B6D4;
+      --accent: #7C3AED;
+      --success: #059669;
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #E2E8F0;
+      --bg-card: #FFFFFF;
+      --border-primary: #CBD5E1;
+      --border-accent: #94A3B8;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
@@ -257,6 +271,21 @@
       margin-top: 24px;
       flex-wrap: wrap;
     }
+    .signature-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .signature-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-primary);
+      background: rgba(6,182,212,0.1);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -309,6 +338,32 @@
       grid-template-columns: 1fr 400px;
       gap: 32px;
       animation: fadeInUp 0.6s ease-out 0.4s both;
+    }
+    .featured-results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .result-card {
+      background: rgba(139,92,246,0.08);
+      border: 1px solid rgba(139,92,246,0.25);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .result-title {
+      color: var(--accent);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .result-text {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.55;
+      font-weight: 500;
     }
     .main-column, .sidebar {
       display: flex;
@@ -520,6 +575,7 @@
     }
     @media (max-width: 1024px) {
       .content-grid { grid-template-columns: 1fr; }
+      .featured-results { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
       .contact-card { position: static; }
     }
@@ -584,6 +640,7 @@
           <p class="hero-description" id="heroDescription">
             Coordinadora de Supply Chain experimentada con experiencia comprobada en cumplimiento aduanero, operaciones de importación/exportación y logística end-to-end. Especializada en optimización de procesos y garantía de 0% de errores en flujos críticos.
           </p>
+          <div class="signature-points" id="signaturePoints"></div>
           <div class="hero-actions">
             <a href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank" class="btn btn-primary">🔗 LinkedIn</a>
             <a href="mailto:obando.diana@web.de" class="btn btn-secondary">✉️ Email</a>
@@ -619,6 +676,7 @@
             <div class="section-icon">💼</div>
             <h3 class="section-title" id="expSectionTitle">Experiencia Profesional</h3>
           </div>
+          <div class="featured-results" id="featuredResults"></div>
           <div id="experienceList"></div>
         </div>
       </div>
@@ -678,7 +736,10 @@
           stat2Label: "Zeitreduktion",
           stat3Label: "Fehlerquote",
           stat4Label: "Pünktliche Lieferung",
+          signaturePoints: ["Zoll-Compliance ohne Beanstandungen", "End-to-End Import/Export Ownership", "Operative Exzellenz mit KPI-Fokus"],
           expSectionTitle: "Berufserfahrung",
+          featuredResultTitles: ["Messbarer Impact", "Prozessoptimierung", "Stakeholder Management"],
+          featuredResults: ["192 Importvorgänge vollständig E2E abgewickelt.", "Dokumentationsprozesse neu gestaltet und Bearbeitungszeit um 25% reduziert.", "Wöchentlich 40+ POs für internationale Key Accounts koordiniert."],
           skillsSectionTitle: "Kernkompetenzen",
           contactTitle: "Kontakt",
           locationCity: "München, Deutschland",
@@ -707,7 +768,10 @@
           stat2Label: "Time Reduction",
           stat3Label: "Error Rate",
           stat4Label: "On-Time Delivery",
+          signaturePoints: ["Audit-ready customs compliance", "End-to-end import/export ownership", "KPI-driven operational excellence"],
           expSectionTitle: "Professional Experience",
+          featuredResultTitles: ["Measurable Impact", "Process Optimization", "Stakeholder Management"],
+          featuredResults: ["Executed 192 import operations end-to-end with full documentation accuracy.", "Redesigned critical documentation flows and reduced processing time by 25%.", "Coordinated 40+ weekly POs for international key accounts."],
           skillsSectionTitle: "Core Competencies",
           contactTitle: "Get in Touch",
           locationCity: "Munich, Germany",
@@ -736,7 +800,10 @@
           stat2Label: "Reducción de Tiempo",
           stat3Label: "Tasa de Error",
           stat4Label: "Entrega a Tiempo",
+          signaturePoints: ["Cumplimiento aduanero audit-ready", "Gestión end-to-end de import/export", "Excelencia operativa orientada a KPIs"],
           expSectionTitle: "Experiencia Profesional",
+          featuredResultTitles: ["Impacto Medible", "Optimización de Procesos", "Gestión de Stakeholders"],
+          featuredResults: ["Ejecución de 192 operaciones de importación end-to-end con documentación precisa.", "Rediseño de flujos documentales críticos con reducción del 25% en tiempos.", "Coordinación de 40+ órdenes de compra semanales para cuentas clave internacionales."],
           skillsSectionTitle: "Competencias Clave",
           contactTitle: "Contacto",
           locationCity: "Múnich, Alemania",
@@ -777,6 +844,16 @@
       document.getElementById('contactTitle').textContent = content.contactTitle;
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
+      document.getElementById('signaturePoints').innerHTML = content.signaturePoints
+        .map(point => `<span class="signature-chip">${point}</span>`).join('');
+
+      const featuredResults = document.getElementById('featuredResults');
+      featuredResults.innerHTML = content.featuredResults.map((result, idx) => `
+        <div class="result-card">
+          <div class="result-title">${content.featuredResultTitles[idx]}</div>
+          <p class="result-text">${result}</p>
+        </div>
+      `).join('');
       
       const experienceList = document.getElementById('experienceList');
       experienceList.innerHTML = content.experience.map(exp => `
@@ -819,7 +896,12 @@
     });
     
     document.getElementById('themeToggle').addEventListener('click', () => {
-      alert('Theme toggle feature coming soon!');
+      document.body.classList.toggle('light-mode');
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.print();
     });
   </script>
 </body>
