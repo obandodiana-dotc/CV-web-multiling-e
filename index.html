@@ -518,6 +518,45 @@
       background: var(--bg-secondary);
       transform: rotate(15deg);
     }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .highlight-card {
+      padding: 16px;
+      border: 1px solid var(--border-primary);
+      border-radius: 12px;
+      background: rgba(15,23,42,0.45);
+    }
+    .highlight-card h4 { color: var(--primary-light); margin-bottom: 6px; font-size: 0.95rem; }
+    .highlight-card p { color: var(--text-secondary); font-size: 0.9rem; }
+    .edu-item { padding: 14px 0; border-bottom: 1px dashed var(--border-primary); }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-title { font-weight: 700; }
+    .edu-meta { color: var(--text-muted); font-size: 0.9rem; }
+    .cta-strip {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(16,185,129,0.35);
+      background: rgba(16,185,129,0.08);
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    body.light {
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #EEF2FF;
+      --bg-card: #FFFFFF;
+      --border-primary: #CBD5E1;
+      --border-accent: #94A3B8;
+    }
+
     @media (max-width: 1024px) {
       .content-grid { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
@@ -621,6 +660,15 @@
           </div>
           <div id="experienceList"></div>
         </div>
+
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon">🏆</div>
+            <h3 class="section-title" id="highlightsTitle">Logros de Impacto</h3>
+          </div>
+          <div id="highlightsList" class="highlights-grid"></div>
+          <div class="cta-strip" id="ctaStrip">Abierta a entrevistas para roles de Supply Chain, operaciones y mejora continua.</div>
+        </div>
       </div>
 
       <div class="sidebar">
@@ -630,6 +678,14 @@
             <h3 class="section-title" id="skillsSectionTitle">Competencias Clave</h3>
           </div>
           <div id="skillsContainer"></div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon">🎓</div>
+            <h3 class="section-title" id="educationTitle">Educación y Certificaciones</h3>
+          </div>
+          <div id="educationList"></div>
         </div>
 
         <div class="contact-card">
@@ -683,6 +739,9 @@
           contactTitle: "Kontakt",
           locationCity: "München, Deutschland",
           locationStatus: "Chancenkarte • Sofort verfügbar",
+          highlightsTitle: "Ergebnisse auf einen Blick",
+          educationTitle: "Ausbildung & Zertifikate",
+          ctaStrip: "Offen für Gespräche zu Supply-Chain-, Logistik- und Operations-Rollen.",
           experience: [
             { company: "Banco Popular", role: "Business Operations Spezialistin", date: "Okt 2021 - Jul 2025", description: "Implementierung qualitätsorientierter Betreuungsstrategien mit 10% CSAT-Steigerung. Analyse und Neugestaltung des Dokumentations-Workflows – 25% Zeitreduktion." },
             { company: "Expeditors International", role: "Key Account Operations Spezialistin (Export)", date: "Jun 2021 - Okt 2021", description: "Operative Abwicklung von 40+ Purchase Orders wöchentlich für 5 internationale Key Accounts im Medizinprodukte-Sektor." },
@@ -694,6 +753,17 @@
             { category: "Zoll & Außenhandel", items: ["Zoll-Compliance", "DUA-Anmeldungen", "Import/Export-Dokumentation", "Merlin-System"] },
             { category: "ERP & IT-Systeme", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
             { category: "Digitalisierung", items: ["Python", "HTML/CSS", "Datenanalyse", "KI-Grundlagen"] }
+          ],
+          highlights: [
+            { title: "192 Importvorgänge", text: "End-to-End-Abwicklung mit vollständiger Nachverfolgbarkeit und ohne kritische Abweichungen." },
+            { title: "25% schneller", text: "Optimierung der Dokumentationsabläufe mit messbarer Verbesserung der Prozesszeiten." },
+            { title: "0% Fehlerquote", text: "Qualitätssicherung in compliance-kritischen Zoll- und Importprozessen." },
+            { title: "98% OTD", text: "Konstant hohe Liefertreue in operativer Auftragssteuerung." }
+          ],
+          education: [
+            { title: "B.Sc. Internationaler Handel", meta: "Universidad Nacional de Costa Rica (2024)" },
+            { title: "Technischer Abschluss Logistik", meta: "Colegio Técnico Profesional de Carrillo" },
+            { title: "Lean Six Sigma Yellow Belt", meta: "PAC-LEAN (2025)" }
           ]
         },
         en: {
@@ -712,6 +782,9 @@
           contactTitle: "Get in Touch",
           locationCity: "Munich, Germany",
           locationStatus: "Chancenkarte • Available immediately",
+          highlightsTitle: "Impact Highlights",
+          educationTitle: "Education & Certifications",
+          ctaStrip: "Open to interviews for Supply Chain, Logistics, and Operations roles.",
           experience: [
             { company: "Banco Popular", role: "Business Operations Specialist", date: "Oct 2021 - Jul 2025", description: "Implemented quality-focused service strategies resulting in 10% CSAT increase. Analyzed and redesigned documentation workflow – 25% time reduction." },
             { company: "Expeditors International", role: "Key Account Operations Specialist (Export)", date: "Jun 2021 - Oct 2021", description: "Managed 40+ Purchase Orders weekly for 5 international key accounts in medical products sector." },
@@ -723,6 +796,17 @@
             { category: "Customs & Foreign Trade", items: ["Customs Compliance", "DUA Declarations", "Import/Export Documentation", "Merlin System"] },
             { category: "ERP & IT Systems", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
             { category: "Digitalization", items: ["Python", "HTML/CSS", "Data Analysis", "AI Fundamentals"] }
+          ],
+          highlights: [
+            { title: "192 import ops", text: "End-to-end execution with full document traceability and critical-error prevention." },
+            { title: "25% faster cycle", text: "Documentation workflow redesign with measurable SLA improvements." },
+            { title: "0% error rate", text: "Quality controls across compliance-sensitive and customs workflows." },
+            { title: "98% OTD", text: "Consistent service level in order handling and delivery coordination." }
+          ],
+          education: [
+            { title: "B.Sc. International Trade", meta: "National University of Costa Rica (2024)" },
+            { title: "Technical Degree in Logistics", meta: "Carrillo Technical Professional School" },
+            { title: "Lean Six Sigma Yellow Belt", meta: "PAC-LEAN (2025)" }
           ]
         },
         es: {
@@ -741,6 +825,9 @@
           contactTitle: "Contacto",
           locationCity: "Múnich, Alemania",
           locationStatus: "Chancenkarte • Disponible inmediatamente",
+          highlightsTitle: "Logros de Impacto",
+          educationTitle: "Educación y Certificaciones",
+          ctaStrip: "Abierta a entrevistas para roles de Supply Chain, logística y operaciones.",
           experience: [
             { company: "Banco Popular", role: "Especialista en Operaciones de Negocio", date: "Oct 2021 - Jul 2025", description: "Implementación de estrategias de atención orientadas a la calidad, logrando un aumento del 10% en CSAT. Análisis y rediseño del flujo de documentación." },
             { company: "Expeditors International", role: "Especialista de Operaciones Key Account (Exportación)", date: "Jun 2021 - Oct 2021", description: "Gestión de 40+ órdenes de compra semanales para 5 cuentas clave internacionales en sector de productos médicos." },
@@ -752,6 +839,17 @@
             { category: "Aduanas y Comercio Exterior", items: ["Cumplimiento Aduanero", "Declaraciones DUA", "Documentación Import/Export", "Sistema Merlin"] },
             { category: "ERP y Sistemas IT", items: ["SAP WM", "Oracle", "WMS", "MS Excel", "SharePoint", "Azure DevOps"] },
             { category: "Digitalización", items: ["Python", "HTML/CSS", "Análisis de Datos", "Fundamentos de IA"] }
+          ],
+          highlights: [
+            { title: "192 operaciones import", text: "Ejecución end-to-end con trazabilidad documental y prevención de errores críticos." },
+            { title: "25% menos ciclo", text: "Rediseño de flujos documentales con mejora medible en tiempos operativos." },
+            { title: "0% tasa de error", text: "Controles de calidad en procesos sensibles de aduanas y compliance." },
+            { title: "98% OTD", text: "Nivel de servicio sostenido en gestión de pedidos y coordinación de entregas." }
+          ],
+          education: [
+            { title: "Licenciatura en Comercio Internacional", meta: "Universidad Nacional de Costa Rica (2024)" },
+            { title: "Técnico Medio en Logística", meta: "Colegio Técnico Profesional de Carrillo" },
+            { title: "Lean Six Sigma Yellow Belt", meta: "PAC-LEAN (2025)" }
           ]
         }
       }
@@ -777,6 +875,9 @@
       document.getElementById('contactTitle').textContent = content.contactTitle;
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
+      document.getElementById('highlightsTitle').textContent = content.highlightsTitle;
+      document.getElementById('educationTitle').textContent = content.educationTitle;
+      document.getElementById('ctaStrip').textContent = content.ctaStrip;
       
       const experienceList = document.getElementById('experienceList');
       experienceList.innerHTML = content.experience.map(exp => `
@@ -792,6 +893,22 @@
         </div>
       `).join('');
       
+      const highlightsList = document.getElementById('highlightsList');
+      highlightsList.innerHTML = content.highlights.map(item => `
+        <article class="highlight-card">
+          <h4>${item.title}</h4>
+          <p>${item.text}</p>
+        </article>
+      `).join('');
+
+      const educationList = document.getElementById('educationList');
+      educationList.innerHTML = content.education.map(item => `
+        <div class="edu-item">
+          <div class="edu-title">${item.title}</div>
+          <div class="edu-meta">${item.meta}</div>
+        </div>
+      `).join('');
+
       const skillsContainer = document.getElementById('skillsContainer');
       skillsContainer.innerHTML = content.skills.map(category => `
         <div class="skills-category">
@@ -818,9 +935,18 @@
       }
     });
     
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      alert('Theme toggle feature coming soon!');
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      themeToggle.textContent = isLight ? '🌙' : '🎨';
+      localStorage.setItem('cv-theme', isLight ? 'light' : 'dark');
     });
+
+    if (localStorage.getItem('cv-theme') === 'light') {
+      document.body.classList.add('light');
+      themeToggle.textContent = '🌙';
+    }
   </script>
 </body>
 </html>
