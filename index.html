@@ -21,12 +21,28 @@
       --bg-card: #1E293B;
       --border-primary: #334155;
       --border-accent: #475569;
+      --bg-gradient: linear-gradient(135deg, #0F172A 0%, #111827 100%);
+    }
+    body.light-theme {
+      --primary: #0891B2;
+      --primary-light: #22D3EE;
+      --accent: #7C3AED;
+      --success: #059669;
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #64748B;
+      --bg-primary: #F1F5F9;
+      --bg-secondary: #E2E8F0;
+      --bg-card: #FFFFFF;
+      --border-primary: #CBD5E1;
+      --border-accent: #94A3B8;
+      --bg-gradient: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-primary);
-      background: var(--bg-primary);
+      background: var(--bg-gradient);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -304,6 +320,17 @@
       letter-spacing: 0.05em;
       font-weight: 600;
     }
+    
+    .innovation-lab {
+      margin-bottom: 32px;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+    .innovation-lab .skill-tag {
+      background: rgba(139,92,246,0.12);
+      border-color: rgba(139,92,246,0.3);
+      color: var(--accent);
+    }
+
     .content-grid {
       display: grid;
       grid-template-columns: 1fr 400px;
@@ -611,6 +638,14 @@
         <div class="stat-label" id="stat4Label">Entrega a Tiempo</div>
       </div>
     </section>
+    <section class="section-card innovation-lab">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <h3 class="section-title" id="innovationTitle">Impacto en tiempo real</h3>
+      </div>
+      <p class="hero-description" id="innovationDescription">Una lectura rápida del impacto operativo generado: eficiencia, calidad y ejecución internacional.</p>
+      <div class="skills-tags" id="innovationTags"></div>
+    </section>
 
     <div class="content-grid">
       <div class="main-column">
@@ -681,6 +716,9 @@
           expSectionTitle: "Berufserfahrung",
           skillsSectionTitle: "Kernkompetenzen",
           contactTitle: "Kontakt",
+          innovationTitle: "Impact in Echtzeit",
+          innovationDescription: "Schneller Überblick über operativen Impact: Effizienz, Qualität und internationale Umsetzung.",
+          innovationTags: ["⚙️ Prozessoptimierung +25%", "🎯 Servicequalität +10% CSAT", "📦 192 Importvorgänge", "✅ 0% kritische Fehler"],
           locationCity: "München, Deutschland",
           locationStatus: "Chancenkarte • Sofort verfügbar",
           experience: [
@@ -710,6 +748,9 @@
           expSectionTitle: "Professional Experience",
           skillsSectionTitle: "Core Competencies",
           contactTitle: "Get in Touch",
+          innovationTitle: "Real-time Impact",
+          innovationDescription: "A quick snapshot of operational value delivered across efficiency, quality, and global execution.",
+          innovationTags: ["⚙️ Process optimization +25%", "🎯 Service quality +10% CSAT", "📦 192 import operations", "✅ 0% critical errors"],
           locationCity: "Munich, Germany",
           locationStatus: "Chancenkarte • Available immediately",
           experience: [
@@ -739,6 +780,9 @@
           expSectionTitle: "Experiencia Profesional",
           skillsSectionTitle: "Competencias Clave",
           contactTitle: "Contacto",
+          innovationTitle: "Impacto en tiempo real",
+          innovationDescription: "Una lectura rápida del impacto operativo generado: eficiencia, calidad y ejecución internacional.",
+          innovationTags: ["⚙️ Optimización de procesos +25%", "🎯 Calidad de servicio +10% CSAT", "📦 192 operaciones de importación", "✅ 0% errores críticos"],
           locationCity: "Múnich, Alemania",
           locationStatus: "Chancenkarte • Disponible inmediatamente",
           experience: [
@@ -775,6 +819,8 @@
       document.getElementById('expSectionTitle').textContent = content.expSectionTitle;
       document.getElementById('skillsSectionTitle').textContent = content.skillsSectionTitle;
       document.getElementById('contactTitle').textContent = content.contactTitle;
+      document.getElementById('innovationTitle').textContent = content.innovationTitle;
+      document.getElementById('innovationDescription').textContent = content.innovationDescription;
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
       
@@ -793,6 +839,8 @@
       `).join('');
       
       const skillsContainer = document.getElementById('skillsContainer');
+      document.getElementById('innovationTags').innerHTML = content.innovationTags.map(tag => `<span class="skill-tag">${tag}</span>`).join('');
+
       skillsContainer.innerHTML = content.skills.map(category => `
         <div class="skills-category">
           <div class="skills-category-title">${category.category}</div>
@@ -808,6 +856,23 @@
     });
     
     updateContent('es');
+
+    document.querySelectorAll('.stat-value').forEach((el) => {
+      const target = el.textContent.trim();
+      const num = parseInt(target, 10);
+      const hasPercent = target.includes('%');
+      let step = 0;
+      const limit = Number.isNaN(num) ? 0 : num;
+      const timer = setInterval(() => {
+        step += Math.ceil(limit / 30) || 1;
+        if (step >= limit) {
+          el.textContent = hasPercent ? `${limit}%` : `${limit}`;
+          clearInterval(timer);
+        } else {
+          el.textContent = hasPercent ? `${step}%` : `${step}`;
+        }
+      }, 35);
+    });
     
     const navHeader = document.getElementById('navHeader');
     window.addEventListener('scroll', () => {
@@ -818,9 +883,18 @@
       }
     });
     
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      alert('Theme toggle feature coming soon!');
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+      const light = document.body.classList.contains('light-theme');
+      themeToggle.textContent = light ? '🌙' : '🎨';
+      localStorage.setItem('cv-theme', light ? 'light' : 'dark');
     });
+
+    if (localStorage.getItem('cv-theme') === 'light') {
+      document.body.classList.add('light-theme');
+      themeToggle.textContent = '🌙';
+    }
   </script>
 </body>
 </html>
