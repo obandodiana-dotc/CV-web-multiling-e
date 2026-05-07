@@ -518,6 +518,36 @@
       background: var(--bg-secondary);
       transform: rotate(15deg);
     }
+    .ai-panel {
+      margin-top: 24px;
+      border: 1px solid var(--border-primary);
+      border-radius: 12px;
+      padding: 16px;
+      background: rgba(6,182,212,0.08);
+    }
+    .ai-panel h4 {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      color: var(--primary-light);
+    }
+    .ai-input {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border-primary);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 10px 12px;
+      font: inherit;
+      min-height: 64px;
+      resize: vertical;
+    }
+    .ai-output {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .hidden { display: none; }
     @media (max-width: 1024px) {
       .content-grid { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
@@ -588,6 +618,14 @@
             <a href="https://www.linkedin.com/in/diana-obando-marchena" target="_blank" class="btn btn-primary">🔗 LinkedIn</a>
             <a href="mailto:obando.diana@web.de" class="btn btn-secondary">✉️ Email</a>
             <a href="https://github.com/obandodiana-dotc" target="_blank" class="btn btn-secondary">📂 GitHub</a>
+          </div>
+          <div class="ai-panel">
+            <h4 id="insightTitle">✨ Generador de pitch profesional (IA local)</h4>
+            <textarea class="ai-input" id="insightInput" placeholder="Ejemplo: logística médica, eficiencia operativa, reducción de costos"></textarea>
+            <div class="hero-actions" style="margin-top:12px;">
+              <button class="btn btn-secondary" id="insightBtn">Generar pitch</button>
+            </div>
+            <div class="ai-output hidden" id="insightOutput"></div>
           </div>
         </div>
       </div>
@@ -683,6 +721,9 @@
           contactTitle: "Kontakt",
           locationCity: "München, Deutschland",
           locationStatus: "Chancenkarte • Sofort verfügbar",
+          insightTitle: "✨ Professionellen Pitch-Generator (lokale KI)",
+          insightPlaceholder: "Beispiel: medizinische Logistik, operative Effizienz, Kostenreduktion",
+          insightBtn: "Pitch erstellen",
           experience: [
             { company: "Banco Popular", role: "Business Operations Spezialistin", date: "Okt 2021 - Jul 2025", description: "Implementierung qualitätsorientierter Betreuungsstrategien mit 10% CSAT-Steigerung. Analyse und Neugestaltung des Dokumentations-Workflows – 25% Zeitreduktion." },
             { company: "Expeditors International", role: "Key Account Operations Spezialistin (Export)", date: "Jun 2021 - Okt 2021", description: "Operative Abwicklung von 40+ Purchase Orders wöchentlich für 5 internationale Key Accounts im Medizinprodukte-Sektor." },
@@ -712,6 +753,9 @@
           contactTitle: "Get in Touch",
           locationCity: "Munich, Germany",
           locationStatus: "Chancenkarte • Available immediately",
+          insightTitle: "✨ Professional pitch generator (local AI)",
+          insightPlaceholder: "Example: medical logistics, operational efficiency, cost reduction",
+          insightBtn: "Generate pitch",
           experience: [
             { company: "Banco Popular", role: "Business Operations Specialist", date: "Oct 2021 - Jul 2025", description: "Implemented quality-focused service strategies resulting in 10% CSAT increase. Analyzed and redesigned documentation workflow – 25% time reduction." },
             { company: "Expeditors International", role: "Key Account Operations Specialist (Export)", date: "Jun 2021 - Oct 2021", description: "Managed 40+ Purchase Orders weekly for 5 international key accounts in medical products sector." },
@@ -741,6 +785,9 @@
           contactTitle: "Contacto",
           locationCity: "Múnich, Alemania",
           locationStatus: "Chancenkarte • Disponible inmediatamente",
+          insightTitle: "✨ Generador de pitch profesional (IA local)",
+          insightPlaceholder: "Ejemplo: logística médica, eficiencia operativa, reducción de costos",
+          insightBtn: "Generar pitch",
           experience: [
             { company: "Banco Popular", role: "Especialista en Operaciones de Negocio", date: "Oct 2021 - Jul 2025", description: "Implementación de estrategias de atención orientadas a la calidad, logrando un aumento del 10% en CSAT. Análisis y rediseño del flujo de documentación." },
             { company: "Expeditors International", role: "Especialista de Operaciones Key Account (Exportación)", date: "Jun 2021 - Oct 2021", description: "Gestión de 40+ órdenes de compra semanales para 5 cuentas clave internacionales en sector de productos médicos." },
@@ -777,6 +824,9 @@
       document.getElementById('contactTitle').textContent = content.contactTitle;
       document.getElementById('locationCity').textContent = content.locationCity;
       document.getElementById('locationStatus').textContent = content.locationStatus;
+      document.getElementById('insightTitle').textContent = content.insightTitle;
+      document.getElementById('insightInput').placeholder = content.insightPlaceholder;
+      document.getElementById('insightBtn').textContent = content.insightBtn;
       
       const experienceList = document.getElementById('experienceList');
       experienceList.innerHTML = content.experience.map(exp => `
@@ -818,8 +868,48 @@
       }
     });
     
+    const THEMES = {
+      dark: {
+        '--primary': '#06B6D4', '--primary-light': '#22D3EE', '--accent': '#8B5CF6', '--success': '#10B981',
+        '--text-primary': '#F9FAFB', '--text-secondary': '#D1D5DB', '--text-muted': '#9CA3AF',
+        '--bg-primary': '#0F172A', '--bg-secondary': '#1E293B', '--bg-card': '#1E293B',
+        '--border-primary': '#334155', '--border-accent': '#475569'
+      },
+      light: {
+        '--primary': '#0284C7', '--primary-light': '#0EA5E9', '--accent': '#7C3AED', '--success': '#059669',
+        '--text-primary': '#0F172A', '--text-secondary': '#334155', '--text-muted': '#64748B',
+        '--bg-primary': '#F8FAFC', '--bg-secondary': '#E2E8F0', '--bg-card': '#FFFFFF',
+        '--border-primary': '#CBD5E1', '--border-accent': '#94A3B8'
+      }
+    };
+    function applyTheme(themeName) {
+      const theme = THEMES[themeName];
+      Object.entries(theme).forEach(([key, value]) => document.documentElement.style.setProperty(key, value));
+      localStorage.setItem('cv-theme', themeName);
+      document.getElementById('themeToggle').textContent = themeName === 'dark' ? '🌙' : '☀️';
+    }
+    const initialTheme = localStorage.getItem('cv-theme') || 'dark';
+    applyTheme(initialTheme);
     document.getElementById('themeToggle').addEventListener('click', () => {
-      alert('Theme toggle feature coming soon!');
+      const current = localStorage.getItem('cv-theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    function generatePitch(keywords, lang) {
+      const text = keywords.trim() || (lang === 'de' ? 'Supply Chain, Prozessoptimierung und internationale Logistik' : lang === 'en' ? 'Supply chain, process optimization and international logistics' : 'Supply chain, optimización de procesos y logística internacional');
+      const map = {
+        de: `Ich verbinde ${text} mit datengetriebener Umsetzung. Mit Erfahrung in Zoll-Compliance, Key-Account-Operationen und Prozessdesign liefere ich messbare Ergebnisse: schnellere Durchlaufzeiten, stabile Qualität und verlässliche internationale Abläufe.`,
+        en: `I combine ${text} with data-driven execution. With hands-on experience in customs compliance, key account operations, and process design, I deliver measurable outcomes: faster lead times, stable quality, and reliable international flows.`,
+        es: `Combino ${text} con ejecución orientada a datos. Gracias a mi experiencia en cumplimiento aduanero, operaciones key account y diseño de procesos, logro resultados medibles: tiempos más ágiles, calidad estable y flujos internacionales confiables.`
+      };
+      return map[lang];
+    }
+    document.getElementById('insightBtn').addEventListener('click', () => {
+      const lang = langSelect.value;
+      const prompt = document.getElementById('insightInput').value;
+      const output = document.getElementById('insightOutput');
+      output.textContent = generatePitch(prompt, lang);
+      output.classList.remove('hidden');
     });
   </script>
 </body>
